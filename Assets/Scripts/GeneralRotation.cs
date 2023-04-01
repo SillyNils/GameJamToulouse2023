@@ -55,7 +55,7 @@ public class GeneralRotation : MonoBehaviour
 
         float tiltAroundY = _YtiltAngle * _YspeedRotation;
 
-        Quaternion Yquaternion = Quaternion.Euler(30, tiltAroundY, 0);
+        Quaternion Yquaternion = Quaternion.Euler(0, tiltAroundY, 0);
 
         // zone calcule sur l'axe Z
         _ZtiltAngle += Time.deltaTime; // fait varier tiltrotation en le * par le tmeps en cours
