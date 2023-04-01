@@ -279,7 +279,10 @@ MonoBehaviour:
   _YtiltAngle: 0
   _ZspeedRotation: 0
   _ZtiltAngle: 0
-  _isInNormalState: 0
+  _globalisInNormalState: 0
+  _XisInNormalState: 0
+  _YisInNormalState: 0
+  _ZisInNormalState: 0
 --- !u!135 &1679570507
 SphereCollider:
   m_ObjectHideFlags: 0

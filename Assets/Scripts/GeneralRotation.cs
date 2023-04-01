@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,7 +25,11 @@ public class GeneralRotation : MonoBehaviour
     private float _XZdeadZoneSize = 5f;
     private float _YdeadZoneSize = 100f;
 
-    
+    public float XspeedRotation { get => _XspeedRotation; set => _XspeedRotation = value; }
+    public float YspeedRotation { get => _YspeedRotation; set => _YspeedRotation = value; }
+    public float ZspeedRotation { get => _ZspeedRotation; set => _ZspeedRotation = value; }
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +44,7 @@ public class GeneralRotation : MonoBehaviour
 
         _XtiltAngle += Time.deltaTime; // fait varier tiltrotation en le * par le tmeps en cours
 
-        float tiltAroundX = Mathf.Sin(_XtiltAngle) *  _XspeedRotation;
+        float tiltAroundX = _XtiltAngle *  _XspeedRotation;
 
         Quaternion Xquaternion= Quaternion.Euler(tiltAroundX,0, 0);
 
@@ -69,27 +74,28 @@ public class GeneralRotation : MonoBehaviour
     }
 
 
-    public void IsInNormalState(float Xspeed,float Yspeed,float Zspeed)
+    public void IsInNormalState(float Xspeed,float Yspeed,float Zspeed)// crée un dead zone dite etat normal et verifie si l'un des parametre en sort
     {
 
-        if(Xspeed < _XZdeadZoneSize && Xspeed > -_XZdeadZoneSize)
+        if(Xspeed < _XZdeadZoneSize && Xspeed > -_XZdeadZoneSize)//verifie la dead zone sur l'axe X
         {
             _XisInNormalState= true;
         }
 
-        if(Yspeed < (_YdeadZoneSize +5) && Yspeed > (_YdeadZoneSize - 5))
+        if(Yspeed < (_YdeadZoneSize +5) && Yspeed > (_YdeadZoneSize - 5))//verifie la dead zone sur l'axe Y !! a une valeur differente !!
         {
             _YisInNormalState= true;
         }
         
-        if(Zspeed < _XZdeadZoneSize && Zspeed > -_XZdeadZoneSize)
+        if(Zspeed < _XZdeadZoneSize && Zspeed > -_XZdeadZoneSize)//verifie la dead zone sur l'axe Z
         {
             _ZisInNormalState= true;
         }
 
-        if(_XisInNormalState && _YisInNormalState && _ZisInNormalState)
+        if(_XisInNormalState && _YisInNormalState && _ZisInNormalState)// met en commun les different etats et trigger la stabiliter general du system
         {
             _globalisInNormalState= true;
         }
     }
+
 }
