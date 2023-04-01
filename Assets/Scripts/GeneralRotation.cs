@@ -62,7 +62,7 @@ public class GeneralRotation : MonoBehaviour
     }
 
 
-    public bool IsInNormalState(Quaternion xQ, Quaternion yQ, Quaternion zQ)
+    public void IsInNormalState(Quaternion xQ, Quaternion yQ, Quaternion zQ)
     {
 
     }
