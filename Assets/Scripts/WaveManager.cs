@@ -22,7 +22,7 @@ public class WaveManager : MonoBehaviour
     [Header("Event type parameter")]
     [SerializeField] private EventEnum _type;
 
-    EventManager eventManager = new EventManager();
+    [SerializeField] private EventManager eventManager;
 
     // Start is called before the first frame update
     void Start()

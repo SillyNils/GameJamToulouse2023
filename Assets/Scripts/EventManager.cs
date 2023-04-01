@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum EventEnum { SeismicEvent, SolarFlareEvent, MeteorologicEvent, TsunamiEvent };
@@ -20,12 +22,11 @@ public class EventObject
 public class EventManager : MonoBehaviour
 {
 
-    ArrayList eventList = new ArrayList();
-    EventRotationModificationService eventRotationModificationService;
+    List<EventObject> eventList = new List<EventObject>();
 
     public GeneralRotation generalRotation;
 
-    public ArrayList EventList { get => eventList; set => eventList = value; }
+    public List<EventObject> EventList { get => eventList; set => eventList = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,7 @@ public class EventManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         rotationModification();
     }
@@ -59,7 +60,7 @@ public class EventManager : MonoBehaviour
                         eventList.Remove(eventToRead);
                         break;
                     }
-                    finalYRotationSpeed = eventRotationModificationService.SeismicEvent(finalYRotationSpeed, eventToRead.timing, eventToRead.amplitude, eventToRead.frequency);
+                    finalYRotationSpeed = seismicEvent(finalYRotationSpeed, eventToRead.timing, eventToRead.amplitude, eventToRead.frequency);
                     break;
                 case EventEnum.SolarFlareEvent:
                     if (eventWithTimingComplete(eventToRead.initTime, eventToRead.timing))
@@ -67,7 +68,7 @@ public class EventManager : MonoBehaviour
                         eventList.Remove(eventToRead);
                         break;
                     }
-                    finalYRotationSpeed = eventRotationModificationService.SolarFlareEvent(finalYRotationSpeed, eventToRead.timing, eventToRead.amplitude, eventToRead.delay);
+                    finalYRotationSpeed = solarFlareEvent(finalYRotationSpeed, eventToRead.timing, eventToRead.amplitude, eventToRead.delay);
                     break;
                 case EventEnum.MeteorologicEvent:
                     if (eventWithTimingComplete(eventToRead.initTime, eventToRead.timing))
@@ -75,10 +76,10 @@ public class EventManager : MonoBehaviour
                         eventList.Remove(eventToRead);
                         break;
                     }
-                    finalYRotationSpeed = eventRotationModificationService.MeteorologicEvent(finalYRotationSpeed, eventToRead.timing, eventToRead.amplitude, eventToRead.delay);
+                    finalYRotationSpeed = meteorologicEvent(finalYRotationSpeed, eventToRead.timing, eventToRead.amplitude, eventToRead.delay);
                     break;
                 case EventEnum.TsunamiEvent:
-                    finalYRotationSpeed = eventRotationModificationService.TsunamiEvent(finalYRotationSpeed, eventToRead.timing, eventToRead.amplitude, eventToRead.maxTravelDistance);
+                    finalYRotationSpeed = tsunamiEvent(finalYRotationSpeed, eventToRead.timing, eventToRead.amplitude, eventToRead.maxTravelDistance);
                     break;
             }
         }
@@ -87,7 +88,7 @@ public class EventManager : MonoBehaviour
 
     bool eventWithTimingComplete(float initTime, float timing)
     {
-        return (Time.fixedTime - initTime) >= timing;
+        return (Time.time - initTime) >= timing;
     }
 
     bool eventWithSuccessComplete(float amplitude)
@@ -99,8 +100,32 @@ public class EventManager : MonoBehaviour
     {
         if(globalIsInNormalState)
         {
-            eventToRead.validTime += Time.fixedDeltaTime;
+            eventToRead.validTime += Time.deltaTime;
             eventToRead.amplitude = eventToRead.initAmplitude * (1 - eventToRead.validTime / eventToRead.timing);
         }
+    }
+
+    public float seismicEvent(float initYspeed, float timing, float amplitude, float frequency)
+    {
+        // param timing : duree d'action dans la SafeZone
+        return initYspeed + amplitude * 0.01f * Mathf.Sin(frequency * 0.01f * Time.time);
+    }
+
+    public float solarFlareEvent(float initYspeed, float timing, float amplitude, float delay)
+    {
+        // param timing : durée de l'event
+        return initYspeed;
+    }
+
+    public float meteorologicEvent(float initYspeed, float timing, float amplitude, float delay)
+    {
+        // param timing : durée de l'event
+        return initYspeed;
+    }
+
+    public float tsunamiEvent(float initYspeed, float timing, float amplitude, float _maxTravelDistance)
+    {
+        // param timing : durée de l'event
+        return initYspeed;
     }
 }
