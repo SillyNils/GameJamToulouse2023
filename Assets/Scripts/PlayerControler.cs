@@ -8,6 +8,10 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private Transform _emptyParentTransform;
     [SerializeField] private int _playerMovementClamp;
+
+    [SerializeField] private float _YplayerMovementClamp;
+    [SerializeField] private float _ZplayerMovementClamp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +33,8 @@ public class PlayerControler : MonoBehaviour
 
             Quaternion parentRot = _emptyParentTransform.rotation;
             Vector3 euler = parentRot.eulerAngles;
-            euler.x = Mathf.Clamp((euler.x - input.y + 180) % 360 - 180, -_playerMovementClamp, _playerMovementClamp);
-            euler.z = Mathf.Clamp((euler.z - input.x + 180) % 360 - 180, -_playerMovementClamp, _playerMovementClamp);
+            euler.y = Mathf.Clamp((euler.y - input.x + 180) % 360 - 180, -_YplayerMovementClamp, _YplayerMovementClamp);
+            //euler.z = Mathf.Clamp((euler.x - input.y + 180) % 360 - 180, -_ZplayerMovementClamp, _ZplayerMovementClamp); /// crée le meme mouvement que la fonction du dessus
             parentRot.eulerAngles = euler;
             _emptyParentTransform.rotation = parentRot;
 
