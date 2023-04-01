@@ -47,6 +47,7 @@ public class WaveManager : MonoBehaviour
             eventToAdd.delay = _delay;
             eventToAdd.frequency = _frequency;
             eventToAdd.maxTravelDistance = _maxTravelDistance;
+            eventToAdd.realtimeSinceStartup = Time.realtimeSinceStartup;
             eventManager.addEvent(eventToAdd);
         }
         yield return new WaitForSeconds(10f);

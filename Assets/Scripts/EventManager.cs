@@ -12,6 +12,7 @@ public class EventObject
     public float delay;
     public float frequency;
     public float maxTravelDistance;
+    public float realtimeSinceStartup;
 }
 
 public class EventManager : MonoBehaviour
@@ -50,6 +51,11 @@ public class EventManager : MonoBehaviour
             switch (eventToRead.type)
             {
                 case EventEnum.SeismicEvent:
+                    if(eventWithTimingComplete(eventToRead.realtimeSinceStartup, eventToRead.timing))
+                    {
+                        eventList.Remove(eventToRead);
+                        break;
+                    }
                     finalYRotationSpeed = eventRotationModificationService.SeismicEvent(finalYRotationSpeed, eventToRead.timing, eventToRead.amplitude, eventToRead.frequency);
                     break;
                 case EventEnum.SolarFlareEvent:
@@ -64,6 +70,11 @@ public class EventManager : MonoBehaviour
             }
         }
         generalRotation.YspeedRotation = finalYRotationSpeed;
+    }
+
+    bool eventWithTimingComplete(float realtimeSinceStartup, float timing)
+    {
+        return (Time.realtimeSinceStartup - realtimeSinceStartup) == timing;
     }
 
 }

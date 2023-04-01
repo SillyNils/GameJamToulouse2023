@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class GeneralRotation : MonoBehaviour
 {
-    [Header("X roation parameter")]
+    [Header("X rotation parameter")]
     [SerializeField] private float _XspeedRotation;
     [SerializeField] float _XtiltAngle;
 
-    [Header("Y roation parameter")]
+    [Header("Y rotation parameter")]
     [SerializeField] private float _YspeedRotation;
     [SerializeField] float _YtiltAngle;
 
-    [Header("Z roation parameter")]
+    [Header("Z rotation parameter")]
     [SerializeField] private float _ZspeedRotation;
     [SerializeField] float _ZtiltAngle;
 
-    [Header("dead zone paramatre")]
-    [SerializeField] private bool _globalisInNormalState = false;
+    [Header("Safe zone paramater")]
+    [SerializeField] private bool _globalIsInNormalState = false;
     [SerializeField] private bool _XisInNormalState = false;
     [SerializeField] private bool _YisInNormalState = false;
     [SerializeField] private bool _ZisInNormalState = false;
@@ -28,6 +28,7 @@ public class GeneralRotation : MonoBehaviour
     public float XspeedRotation { get => _XspeedRotation; set => _XspeedRotation = value; }
     public float YspeedRotation { get => _YspeedRotation; set => _YspeedRotation = value; }
     public float ZspeedRotation { get => _ZspeedRotation; set => _ZspeedRotation = value; }
+    public bool GlobalIsInNormalState { get => _globalIsInNormalState; set => _globalIsInNormalState = value; }
 
 
 
@@ -94,7 +95,7 @@ public class GeneralRotation : MonoBehaviour
 
         if(_XisInNormalState && _YisInNormalState && _ZisInNormalState)// met en commun les different etats et trigger la stabiliter general du system
         {
-            _globalisInNormalState= true;
+            _globalIsInNormalState= true;
         }
     }
 
