@@ -5,7 +5,7 @@ public class EventRotationModificationService : MonoBehaviour
     public float SeismicEvent(float initYspeed, float timing, float amplitude, float frequency)
     {
         // param timing : duree d'action dans la SafeZone
-        return initYspeed + amplitude * 0.01f * Mathf.Sin(frequency * 0.01f * Time.time);
+        return initYspeed + amplitude * 0.01f * Mathf.Sin(frequency * 0.01f * Time.fixedTime);
     }
 
     public float SolarFlareEvent(float initYspeed, float timing, float amplitude, float delay)

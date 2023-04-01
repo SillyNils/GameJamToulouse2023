@@ -12,7 +12,9 @@ public class EventObject
     public float delay;
     public float frequency;
     public float maxTravelDistance;
-    public float realtimeSinceStartup;
+    public float validTime = 0;
+    public float initTime;
+    public float initAmplitude;
 }
 
 public class EventManager : MonoBehaviour
@@ -32,7 +34,7 @@ public class EventManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         rotationModification();
     }
@@ -51,7 +53,8 @@ public class EventManager : MonoBehaviour
             switch (eventToRead.type)
             {
                 case EventEnum.SeismicEvent:
-                    if(eventWithTimingComplete(eventToRead.realtimeSinceStartup, eventToRead.timing))
+                    reduceAmplitudeEvent(eventToRead, generalRotation.GlobalIsInNormalState);
+                    if(eventWithSuccessComplete(eventToRead.amplitude))
                     {
                         eventList.Remove(eventToRead);
                         break;
@@ -59,9 +62,19 @@ public class EventManager : MonoBehaviour
                     finalYRotationSpeed = eventRotationModificationService.SeismicEvent(finalYRotationSpeed, eventToRead.timing, eventToRead.amplitude, eventToRead.frequency);
                     break;
                 case EventEnum.SolarFlareEvent:
+                    if (eventWithTimingComplete(eventToRead.initTime, eventToRead.timing))
+                    {
+                        eventList.Remove(eventToRead);
+                        break;
+                    }
                     finalYRotationSpeed = eventRotationModificationService.SolarFlareEvent(finalYRotationSpeed, eventToRead.timing, eventToRead.amplitude, eventToRead.delay);
                     break;
                 case EventEnum.MeteorologicEvent:
+                    if (eventWithTimingComplete(eventToRead.initTime, eventToRead.timing))
+                    {
+                        eventList.Remove(eventToRead);
+                        break;
+                    }
                     finalYRotationSpeed = eventRotationModificationService.MeteorologicEvent(finalYRotationSpeed, eventToRead.timing, eventToRead.amplitude, eventToRead.delay);
                     break;
                 case EventEnum.TsunamiEvent:
@@ -72,9 +85,22 @@ public class EventManager : MonoBehaviour
         generalRotation.YspeedRotation = finalYRotationSpeed;
     }
 
-    bool eventWithTimingComplete(float realtimeSinceStartup, float timing)
+    bool eventWithTimingComplete(float initTime, float timing)
     {
-        return (Time.realtimeSinceStartup - realtimeSinceStartup) == timing;
+        return (Time.fixedTime - initTime) >= timing;
     }
 
+    bool eventWithSuccessComplete(float amplitude)
+    {
+        return amplitude <= 1;
+    }
+
+    void reduceAmplitudeEvent(EventObject eventToRead, bool globalIsInNormalState)
+    {
+        if(globalIsInNormalState)
+        {
+            eventToRead.validTime += Time.fixedDeltaTime;
+            eventToRead.amplitude = eventToRead.initAmplitude * (1 - eventToRead.validTime / eventToRead.timing);
+        }
+    }
 }
