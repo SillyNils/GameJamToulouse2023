@@ -38,11 +38,13 @@ public class PlayerControler : MonoBehaviour
             {
                 input.Normalize();
             }
-            
-        _Playerspeed =  _Playerspeed*(1-_deltaInput)+input.x *_deltaInput; // calcule de la nouvelle vitesse joueur 
+ 
+
+        _Playerspeed = _Playerspeed + input.x * _deltaInput; // calcule de la nouvelle vitesse joueur
 
         _deltaForce = _Playerspeed - _YGrotation.YspeedRotation; // calcule le delat de vitesse entre Vnoyaux et Vplayers
-
+        
+        
         
 
             Quaternion parentRot = _emptyParentTransform.rotation;
