@@ -6,7 +6,7 @@ using UnityEngine.Rendering.HighDefinition;
 
 public class PlayerControler : MonoBehaviour
 {
-    [SerializeField] private float _speed;
+    [SerializeField] private float _Playerspeed = 100;
     [SerializeField] private Transform _emptyParentTransform;
 
     [SerializeField] private float _YplayerMovementClampCenter;
@@ -15,7 +15,12 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float _ZplayerMovementClampCenter;
     [SerializeField] private float _ZplayerMovementClampExtent;
     [SerializeField] private float _ZplayerCenter;
-    [SerializeField] private float _delta;
+    [SerializeField] private float _deltaDeplacement;
+    [SerializeField] private float _deltaInput;
+
+    private float _deltaForce;
+
+    [SerializeField] private GeneralRotation _YGrotation;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +29,7 @@ public class PlayerControler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         Vector2 input = new Vector2(Input.GetAxis("X axis"), Input.GetAxis("Y axis"));
@@ -33,25 +38,29 @@ public class PlayerControler : MonoBehaviour
             {
                 input.Normalize();
             }
+            
+        _Playerspeed =  _Playerspeed*(1-_deltaInput)+input.x *_deltaInput; // calcule de la nouvelle vitesse joueur 
+
+        _deltaForce = _Playerspeed - _YGrotation.YspeedRotation; // calcule le delat de vitesse entre Vnoyaux et Vplayers
+
+        
 
             Quaternion parentRot = _emptyParentTransform.rotation;
             Vector3 euler = parentRot.eulerAngles;
             //float newY = (euler.y - input.x + 180) % 360 - 180;
 
-            float newY =  (- input.x / Mathf.Sin(Mathf.Deg2Rad*euler.z) + 180) % 360 - 180;
+            float newY =  (- _deltaForce/ Mathf.Sin(Mathf.Deg2Rad*euler.z) + 180) % 360 - 180;
             /// deplacement sur la longitude
             float newZ = (input.y + 180) % 360 - 180; /// deplacement sur la latitude
 
             Vector2 newYZNormalized = new Vector2(newY, newZ).normalized; /// balek
 
-            euler.y += _delta * newY;
+            euler.y += _deltaDeplacement * newY;
             ///Mathf.Clamp(newY,
             ///_YplayerMovementClampCenter - _YplayerMovementClampExtent ,
             ///_YplayerMovementClampCenter + _YplayerMovementClampExtent );
-            euler.z = _ZplayerCenter + _delta * newZ;
-            ///Mathf.Clamp(newZ,
-               /// _ZplayerMovementClampCenter - _ZplayerMovementClampExtent,
-               /// _ZplayerMovementClampCenter + _ZplayerMovementClampExtent); /// crée le meme mouvement que la fonction du dessus
+            euler.z = _ZplayerCenter + _deltaDeplacement * newZ;
+
             parentRot.eulerAngles = euler;
             _emptyParentTransform.rotation = parentRot;
 

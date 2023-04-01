@@ -22,6 +22,7 @@ public class GeneralRotation : MonoBehaviour
     [SerializeField] private bool _XisInNormalState = false;
     [SerializeField] private bool _YisInNormalState = false;
     [SerializeField] private bool _ZisInNormalState = false;
+
     private float _XZdeadZoneSize = 5f;
     private float _YdeadZoneSize = 100f;
 
