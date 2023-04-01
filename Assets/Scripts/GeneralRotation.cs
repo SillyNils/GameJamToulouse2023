@@ -16,8 +16,7 @@ public class GeneralRotation : MonoBehaviour
     [SerializeField] private float _ZspeedRotation;
     [SerializeField] float _ZtiltAngle;
 
-    [Header("autre paramatre")]     // a faire 
-    [SerializeField] private float _directionOfRotation;
+    [Header("autre paramatre")]
     [SerializeField] private bool _isInNormalState;
 
     //teste
@@ -38,7 +37,7 @@ public class GeneralRotation : MonoBehaviour
 
         float tiltAroundX = Mathf.Sin(_XtiltAngle) *  _XspeedRotation;
 
-        Quaternion Xquaternion= Quaternion.Euler(0, tiltAroundX, 0);
+        Quaternion Xquaternion= Quaternion.Euler(tiltAroundX,0, 0);
 
 
         // zone calcule sur l'axe Y
@@ -54,11 +53,17 @@ public class GeneralRotation : MonoBehaviour
 
         float tiltAroundZ = _ZtiltAngle * _ZspeedRotation;
 
-        Quaternion Zquaternion = Quaternion.Euler(0, tiltAroundZ, 0);
+        Quaternion Zquaternion = Quaternion.Euler(0, 0, tiltAroundZ);
 
 
         // zone de calcule de la rotation global X+Y+Z
 
         transform.rotation = Xquaternion * Yquaternion * Zquaternion;
+    }
+
+
+    public bool IsInNormalState(Quaternion xQ, Quaternion yQ, Quaternion zQ)
+    {
+
     }
 }
