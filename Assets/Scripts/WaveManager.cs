@@ -44,10 +44,11 @@ public class WaveManager : MonoBehaviour
             eventToAdd.type = _type;
             eventToAdd.timing = _timing;
             eventToAdd.amplitude = _amplitude;
+            eventToAdd.initAmplitude = _amplitude;
             eventToAdd.delay = _delay;
             eventToAdd.frequency = _frequency;
             eventToAdd.maxTravelDistance = _maxTravelDistance;
-            eventToAdd.realtimeSinceStartup = Time.realtimeSinceStartup;
+            eventToAdd.initTime = Time.time;
             eventManager.addEvent(eventToAdd);
         }
         yield return new WaitForSeconds(10f);
