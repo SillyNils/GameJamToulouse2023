@@ -16,10 +16,14 @@ public class GeneralRotation : MonoBehaviour
     [SerializeField] private float _ZspeedRotation;
     [SerializeField] float _ZtiltAngle;
 
-    [Header("autre paramatre")]
-    [SerializeField] private bool _isInNormalState;
+    [Header("dead zone paramatre")]
+    [SerializeField] private bool _globalisInNormalState = false;
+    [SerializeField] private bool _XisInNormalState = false;
+    [SerializeField] private bool _YisInNormalState = false;
+    [SerializeField] private bool _ZisInNormalState = false;
+    private float _XZdeadZoneSize = 5f;
+    private float _YdeadZoneSize = 100f;
 
-    //teste
     
 
     // Start is called before the first frame update
@@ -59,11 +63,33 @@ public class GeneralRotation : MonoBehaviour
         // zone de calcule de la rotation global X+Y+Z
 
         transform.rotation = Xquaternion * Yquaternion * Zquaternion;
+
+        IsInNormalState(_XspeedRotation,_YspeedRotation,_ZspeedRotation);
+
     }
 
 
-    public void IsInNormalState(Quaternion xQ, Quaternion yQ, Quaternion zQ)
+    public void IsInNormalState(float Xspeed,float Yspeed,float Zspeed)
     {
 
+        if(Xspeed < _XZdeadZoneSize && Xspeed > -_XZdeadZoneSize)
+        {
+            _XisInNormalState= true;
+        }
+
+        if(Yspeed < (_YdeadZoneSize +5) && Yspeed > (_YdeadZoneSize - 5))
+        {
+            _YisInNormalState= true;
+        }
+        
+        if(Zspeed < _XZdeadZoneSize && Zspeed > -_XZdeadZoneSize)
+        {
+            _ZisInNormalState= true;
+        }
+
+        if(_XisInNormalState && _YisInNormalState && _ZisInNormalState)
+        {
+            _globalisInNormalState= true;
+        }
     }
 }
