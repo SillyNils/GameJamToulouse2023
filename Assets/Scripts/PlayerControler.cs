@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.Windows;
 
 public class PlayerControler : MonoBehaviour
 {
@@ -35,7 +37,7 @@ public class PlayerControler : MonoBehaviour
     {
         PlayerInNormalState();
 
-        Vector2 input = new Vector2(Input.GetAxis("X axis"), Input.GetAxis("Y axis"));
+        Vector2 input = new Vector2(UnityEngine.Input.GetAxis("X axis"), UnityEngine.Input.GetAxis("Y axis"));
 
             if (input.magnitude > 1)
             {
@@ -91,5 +93,20 @@ public class PlayerControler : MonoBehaviour
         {
             _PlayerIsInNormalState = true;
         }
+    }
+
+    public void qteSpeedReset()
+    {
+        Quaternion parentRot = _emptyParentTransform.rotation;
+        Vector3 euler = parentRot.eulerAngles;
+
+        euler.y = 0;
+        euler.z = _ZplayerCenter;
+
+        parentRot.eulerAngles = euler;
+        _emptyParentTransform.rotation = parentRot;
+
+
+        _Playerspeed = _YGrotation.YspeedRotation + (_Playerspeed - _YGrotation.YspeedRotation) * 0.5f;
     }
 }

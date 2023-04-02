@@ -20,6 +20,7 @@ public class QTEAreaDectection : MonoBehaviour
     [SerializeField] private int _countingDown;
     private bool _enter = false;
 
+    public PlayerControler PlayerControler;
     // Start is called before the first frame update
     void Start()
     {
@@ -97,7 +98,7 @@ public class QTEAreaDectection : MonoBehaviour
         {
             _QTEGen = 4;
             _countingDown= 2;
-            UnityEngine.Debug.Log("Echec QTE Timer");
+            UnityEngine.Debug.Log("Echec QTE Timer");//fonction defaite
             yield return new WaitForSeconds(1.5f);
             _CorrectKey = 0;
             _Qtesprite_A.SetActive(false);
@@ -116,7 +117,10 @@ public class QTEAreaDectection : MonoBehaviour
         if(_CorrectKey == 1)
         {
             _countingDown = 2;
-            UnityEngine.Debug.Log("Reussite QTE");//fonction victoire
+
+            UnityEngine.Debug.Log("Reussite QTE");
+            PlayerControler.qteSpeedReset();//fonction victoire
+
             yield return new WaitForSeconds(1.5f);
             _CorrectKey= 0;
             _Qtesprite_A.SetActive(false);
@@ -131,7 +135,7 @@ public class QTEAreaDectection : MonoBehaviour
         if (_CorrectKey == 2)
         {
             _countingDown = 2;
-            UnityEngine.Debug.Log("Echec QTE button");//fonction victoire
+            UnityEngine.Debug.Log("Echec QTE button");//fonction defaite
             yield return new WaitForSeconds(1.5f);
             _CorrectKey = 0;
             _Qtesprite_A.SetActive(false);
