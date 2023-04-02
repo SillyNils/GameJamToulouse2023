@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum EventEnum { SeismicEvent, SolarFlareEvent, MeteorologicEvent, TsunamiEvent };
+public enum EventEnum { SeismicEvent, SolarFlareEvent, MeteorologicEvent, TsunamiEvent, MeteorEvent };
 
 public class EventObject
 {
@@ -21,7 +21,6 @@ public class EventObject
 
 public class EventManager : MonoBehaviour
 {
-
     List<EventObject> eventList = new List<EventObject>();
 
     public GeneralRotation generalRotation;
@@ -83,6 +82,9 @@ public class EventManager : MonoBehaviour
                 case EventEnum.TsunamiEvent:
                     finalYRotationSpeed = tsunamiEvent(finalYRotationSpeed, eventToRead.timing, eventToRead.amplitude, eventToRead.maxTravelDistance);
                     break;
+                case EventEnum.MeteorEvent:
+                    finalYRotationSpeed = meteorEvent(finalYRotationSpeed, eventToRead.timing, eventToRead.amplitude, eventToRead.frequency, eventToRead.maxTravelDistance);
+                    break;
             }
         }
         generalRotation.YspeedRotation = finalYRotationSpeed;
@@ -126,8 +128,7 @@ public class EventManager : MonoBehaviour
         {
             return initYspeed + (Time.time - delay) / (timing/3 - delay) * amplitude;
         }
-        
-            return initYspeed + amplitude + (timing / 3 - Time.time)/(2*timing / 3) * amplitude;
+        return initYspeed + amplitude + (timing / 3 - Time.time)/(2*timing / 3) * amplitude;
     }
 
     public float meteorologicEvent(float initYspeed, float timing, float amplitude, float delay)
@@ -141,11 +142,16 @@ public class EventManager : MonoBehaviour
         {
             return initYspeed - amplitude - (((2 * timing / 3) - Time.time) / ((timing / 3) + delay)) * amplitude;
         }
-            return initYspeed;
-        
+        return initYspeed;
     }
 
     public float tsunamiEvent(float initYspeed, float timing, float amplitude, float _maxTravelDistance)
+    {
+        // param timing : durée de l'event
+        return initYspeed;
+    }
+
+    public float meteorEvent(float initYspeed, float timing, float amplitude, float frequency, float _maxTravelDistance)
     {
         // param timing : durée de l'event
         return initYspeed;

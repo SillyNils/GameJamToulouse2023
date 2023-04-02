@@ -32,16 +32,13 @@ public class WaveManager : MonoBehaviour
     [Header("EventManager parameter")]
     [SerializeField] private EventManager eventManager;
 
-    private bool _readyToEvent = true;
     private bool _waveComplete;
-    private List<WaveEvent> _waves;
+    private List<WaveEvent> _waves = new();
     private int _waveIndex;
     private int _eventIndex;
     private int _nbSimultaneousEvent;
     private float _minimalTimeBetweenEvent;
     private float _timeSinceLastEventTriggered;
-
-    internal List<WaveEvent> waves { get => _waves; set => _waves = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +48,7 @@ public class WaveManager : MonoBehaviour
         _eventIndex = 0;
         _nbSimultaneousEvent = 3;
         _minimalTimeBetweenEvent = 5f;
+        _timeSinceLastEventTriggered = Time.time;
         _waveComplete = false;
         firstWave();
         secondWave();
@@ -69,7 +67,7 @@ public class WaveManager : MonoBehaviour
 
     void firstWave()
     {
-        WaveEvent waveEvent = new WaveEvent();
+        WaveEvent waveEvent = new();
         waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
         _waves.Add(waveEvent);
     }
@@ -154,12 +152,12 @@ public class WaveManager : MonoBehaviour
 
     void updateWaveEvent()
     {
-        foreach (WaveEvent wave in waves)
+        foreach (WaveEvent wave in _waves)
         {
-            if(waves.IndexOf(wave) == _waveIndex)
+            if (_waves.IndexOf(wave) == _waveIndex)
             {
                 // CurrentWave
-                if(wave.events.Count <= _eventIndex)
+                if (wave.events.Count > _eventIndex)
                 {
                     // Des events de la Wave sont encore à trigger
                     if (eventManager.EventList.Count < _nbSimultaneousEvent && (Time.time - _timeSinceLastEventTriggered) >= _minimalTimeBetweenEvent)
@@ -174,12 +172,13 @@ public class WaveManager : MonoBehaviour
                     // Tous les events de la Wave ont été trigger
                     _waveComplete = eventManager.EventList.Count == 0;
                     _waveIndex = _waveComplete ? _waveIndex++ : _waveIndex;
-                    _eventIndex = eventManager.EventList.Count == 0 ? 0 : _eventIndex;
+                    _eventIndex = _waveComplete ? 0 : _eventIndex;
                 }
             }
         }
     }
 
+   /*
     IEnumerator addEvent()
     {
         Debug.Log("debut event");
@@ -201,4 +200,5 @@ public class WaveManager : MonoBehaviour
         _readyToEvent = true;
         Debug.Log("fin event");
     }
+   */
 }
