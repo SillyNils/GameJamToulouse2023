@@ -4,13 +4,16 @@ using UnityEngine;
 
 class WaveEvent
 {
-    List<EventObject> events = new List<EventObject>();
+    List<EventObject> _events = new List<EventObject>();
 
-    public List<EventObject> Events { get => events; set => events = value; }
+    public List<EventObject> events { get => _events; set => _events = value; }
 }
 
 public class WaveManager : MonoBehaviour
 {
+    [Header("Event type parameter")]
+    [SerializeField] private EventEnum _type;
+ 
     [Header("Timing parameter")]
     [SerializeField] private float _timing;
 
@@ -26,9 +29,7 @@ public class WaveManager : MonoBehaviour
     [Header("Max travel distance parameter")]
     [SerializeField] private float _maxTravelDistance;
 
-    [Header("Event type parameter")]
-    [SerializeField] private EventEnum _type;
-
+    [Header("EventManager parameter")]
     [SerializeField] private EventManager eventManager;
 
     private bool _readyToEvent = true;
@@ -36,6 +37,11 @@ public class WaveManager : MonoBehaviour
     private List<WaveEvent> _waves;
     private int _waveIndex;
     private int _eventIndex;
+    private int _nbSimultaneousEvent;
+    private float _minimalTimeBetweenEvent;
+    private float _timeSinceLastEventTriggered;
+
+    internal List<WaveEvent> waves { get => _waves; set => _waves = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +49,8 @@ public class WaveManager : MonoBehaviour
         _waves = new List<WaveEvent>();
         _waveIndex = 0;
         _eventIndex = 0;
+        _nbSimultaneousEvent = 3;
+        _minimalTimeBetweenEvent = 5f;
         _waveComplete = false;
         firstWave();
         secondWave();
@@ -56,99 +64,77 @@ public class WaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (_readyToEvent)
-        StartCoroutine(addEvent());
+        updateWaveEvent();
     }
 
-    IEnumerator addEvent()
-    {
-        Debug.Log("debut event");
-        _readyToEvent= false;
-        if(eventManager.EventList.Count < 3)
-        {
-            EventObject eventToAdd = new EventObject();
-            eventToAdd.type = _type;
-            eventToAdd.timing = _timing;
-            eventToAdd.amplitude = _amplitude;
-            eventToAdd.initAmplitude = _amplitude;
-            eventToAdd.delay = _delay;
-            eventToAdd.frequency = _frequency;
-            eventToAdd.maxTravelDistance = _maxTravelDistance;
-            eventToAdd.initTime = Time.time;
-            eventManager.addEvent(eventToAdd);
-        }
-        yield return new WaitForSeconds(20f);
-        _readyToEvent= true;
-        Debug.Log("fin event");
-    }
     void firstWave()
     {
         WaveEvent waveEvent = new WaveEvent();
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
         _waves.Add(waveEvent);
     }
 
     void secondWave()
     {
         WaveEvent waveEvent = new WaveEvent();
-        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
         _waves.Add(waveEvent);
     }
 
     void thirdWave()
     {
         WaveEvent waveEvent = new WaveEvent();
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
         _waves.Add(waveEvent); 
     }
 
     void forthWave()
     {
         WaveEvent waveEvent = new WaveEvent();
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
         _waves.Add(waveEvent);
     }
 
     void fifthWave()
     {
         WaveEvent waveEvent = new WaveEvent();
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
         _waves.Add(waveEvent); 
     }
+
     void sixthWave()
     {
         WaveEvent waveEvent = new WaveEvent();
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
         _waves.Add(waveEvent); 
     }
 
     void unlimitedWave()
     {
         WaveEvent waveEvent = new WaveEvent();
-        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
-        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
         _waves.Add(waveEvent); 
     }
 
@@ -164,5 +150,55 @@ public class WaveManager : MonoBehaviour
         eventToAdd.maxTravelDistance = _maxTravelDistance;
         eventToAdd.initTime = Time.time;
         return eventToAdd;
+    }
+
+    void updateWaveEvent()
+    {
+        foreach (WaveEvent wave in waves)
+        {
+            if(waves.IndexOf(wave) == _waveIndex)
+            {
+                // CurrentWave
+                if(wave.events.Count <= _eventIndex)
+                {
+                    // Des events de la Wave sont encore à trigger
+                    if (eventManager.EventList.Count < _nbSimultaneousEvent && (Time.time - _timeSinceLastEventTriggered) >= _minimalTimeBetweenEvent)
+                    {
+                        eventManager.addEvent(wave.events[_eventIndex]);
+                        _timeSinceLastEventTriggered = Time.time;
+                        _eventIndex++;
+                    }
+                }
+                else
+                {
+                    // Tous les events de la Wave ont été trigger
+                    _waveComplete = eventManager.EventList.Count == 0;
+                    _waveIndex = _waveComplete ? _waveIndex++ : _waveIndex;
+                    _eventIndex = eventManager.EventList.Count == 0 ? 0 : _eventIndex;
+                }
+            }
+        }
+    }
+
+    IEnumerator addEvent()
+    {
+        Debug.Log("debut event");
+        _readyToEvent = false;
+        if (eventManager.EventList.Count < 3)
+        {
+            EventObject eventToAdd = new EventObject();
+            eventToAdd.type = _type;
+            eventToAdd.timing = _timing;
+            eventToAdd.amplitude = _amplitude;
+            eventToAdd.initAmplitude = _amplitude;
+            eventToAdd.delay = _delay;
+            eventToAdd.frequency = _frequency;
+            eventToAdd.maxTravelDistance = _maxTravelDistance;
+            eventToAdd.initTime = Time.time;
+            eventManager.addEvent(eventToAdd);
+        }
+        yield return new WaitForSeconds(20f);
+        _readyToEvent = true;
+        Debug.Log("fin event");
     }
 }
