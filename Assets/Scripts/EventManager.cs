@@ -110,7 +110,7 @@ public class EventManager : MonoBehaviour
     public float seismicEvent(float initYspeed, float timing, float amplitude, float frequency)
     {
         // param timing : duree d'action dans la SafeZone
-        Debug.Log(amplitude * Mathf.Sin(frequency * 0.01f * Time.time));
+        ///Debug.Log(amplitude * Mathf.Sin(frequency * 0.01f * Time.time));
         return initYspeed + amplitude * Mathf.Sin(frequency * 0.01f * Time.time);
         
     }
