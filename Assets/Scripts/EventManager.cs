@@ -49,6 +49,8 @@ public class EventManager : MonoBehaviour
     {
         float initYRotationSpeed = 100f;
         float finalYRotationSpeed = initYRotationSpeed;
+
+
         foreach (EventObject eventToRead in eventList)
         {
             switch (eventToRead.type)
@@ -108,7 +110,9 @@ public class EventManager : MonoBehaviour
     public float seismicEvent(float initYspeed, float timing, float amplitude, float frequency)
     {
         // param timing : duree d'action dans la SafeZone
-        return initYspeed + amplitude * 0.01f * Mathf.Sin(frequency * 0.01f * Time.time);
+        Debug.Log(amplitude * Mathf.Sin(frequency * 0.01f * Time.time));
+        return initYspeed + amplitude * Mathf.Sin(frequency * 0.01f * Time.time);
+        
     }
 
     public float solarFlareEvent(float initYspeed, float timing, float amplitude, float delay)

@@ -26,6 +26,7 @@ public class WaveManager : MonoBehaviour
 
 
     private bool _readyToEvent = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +36,7 @@ public class WaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (_readyToEvent)
         StartCoroutine(addEvent());
     }

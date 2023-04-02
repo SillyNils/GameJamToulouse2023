@@ -683,9 +683,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timing: 15
-  _amplitude: 100
+  _amplitude: 2
   _delay: 0
-  _frequency: 100
+  _frequency: 120
   _maxTravelDistance: 0
   _type: 0
   eventManager: {fileID: 836301421}
