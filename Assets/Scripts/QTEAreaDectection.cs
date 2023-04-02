@@ -32,20 +32,20 @@ public class QTEAreaDectection : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        
 
-        _RandQTE = Random.Range(1,4);
+
+        _RandQTE = 1;//Random.Range(1,4);
 
     if(_RandQTE == 1)
         {
             _Qtesprite1.SetActive(true);
-            StartCoroutine(QteTimer());
-            if (Input.GetKeyDown("joystick button 0") && _TimerOff == false)
+            if (Input.GetKeyDown("joystick button 0"))
             {
                 //condition reset perso
                 Debug.Log("victoire QTE");
+                StartCoroutine(QteTimer());
             }
-            else 
+            else if (_TimerOff)
             {
                 _Qtesprite1.SetActive(false);
                 GameOver();
@@ -54,11 +54,11 @@ public class QTEAreaDectection : MonoBehaviour
     else if(_RandQTE == 2)
         {
             _Qtesprite2.SetActive(true);
-            StartCoroutine(QteTimer());
-            if (Input.GetKeyDown("joystick button 1") && _TimerOff == false)
+            if (Input.GetKeyDown("joystick button 1"))
             {
                 //condition reset perso
                 Debug.Log("victoire QTE");
+                StartCoroutine(QteTimer());
             }
             else 
             {
@@ -69,11 +69,12 @@ public class QTEAreaDectection : MonoBehaviour
     else if (_RandQTE== 3)
         {
             _Qtesprite3.SetActive(true);
-            StartCoroutine(QteTimer());
-            if (Input.GetKeyDown("joystick button 2") && _TimerOff == false)
+           
+            if (Input.GetKeyDown("joystick button 2"))
             {
                 //condition reset perso
                 Debug.Log("victoire QTE");
+                StartCoroutine(QteTimer());
             }
             else
             {
@@ -84,12 +85,13 @@ public class QTEAreaDectection : MonoBehaviour
     else if (_RandQTE== 4) 
         {
             _Qtesprite4.SetActive(true);
-            StartCoroutine(QteTimer());
+            
 
-            if (Input.GetKeyDown("joystick button 3") && _TimerOff == false)
+            if (Input.GetKeyDown("joystick button 3"))
             {
                 //condition reset perso
                 Debug.Log("victoire QTE");
+                StartCoroutine(QteTimer());
             }
             else
             {
@@ -104,7 +106,7 @@ public class QTEAreaDectection : MonoBehaviour
     {
         Debug.Log("top");
         _TimerOff= false;
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(3.5f);
         _TimerOff= true;
         Debug.Log(_TimerOff);
     }

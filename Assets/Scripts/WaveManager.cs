@@ -24,20 +24,25 @@ public class WaveManager : MonoBehaviour
 
     [SerializeField] private EventManager eventManager;
 
+
+    private bool _readyToEvent = true;
     // Start is called before the first frame update
     void Start()
     {
-        addEvent();
+        //addEvent();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (_readyToEvent)
         StartCoroutine(addEvent());
     }
 
     IEnumerator addEvent()
     {
+        Debug.Log("debut event");
+        _readyToEvent= false;
         if(eventManager.EventList.Count < 3)
         {
             EventObject eventToAdd = new EventObject();
@@ -51,6 +56,8 @@ public class WaveManager : MonoBehaviour
             eventToAdd.initTime = Time.time;
             eventManager.addEvent(eventToAdd);
         }
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(20f);
+        _readyToEvent= true;
+        Debug.Log("fin event");
     }
 }
