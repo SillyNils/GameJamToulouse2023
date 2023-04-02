@@ -21,6 +21,7 @@ public class QTEAreaDectection : MonoBehaviour
     private bool _enter = false;
 
     public PlayerControler PlayerControler;
+    public GameManager _gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,12 +58,12 @@ public class QTEAreaDectection : MonoBehaviour
                 if (_QTEGen == 2)
                 {
                     _WaitingForKey = 1;
-                    _Qtesprite_Y.SetActive(true);
+                    _Qtesprite_X.SetActive(true);
                 }
                 if (_QTEGen == 3)
                 {
                     _WaitingForKey = 1;
-                    _Qtesprite_X.SetActive(true);
+                    _Qtesprite_Y.SetActive(true);
                 }
             }
 
@@ -98,14 +99,17 @@ public class QTEAreaDectection : MonoBehaviour
         {
             _QTEGen = 4;
             _countingDown= 2;
-            UnityEngine.Debug.Log("Echec QTE Timer");//fonction defaite
-            yield return new WaitForSeconds(1.5f);
+
+            UnityEngine.Debug.Log("Echec QTE Timer");
+            _gameManager.gameOverMenu();//fonction defaite
+
+            //yield return new WaitForSeconds(0.5f);
             _CorrectKey = 0;
             _Qtesprite_A.SetActive(false);
             _Qtesprite_B.SetActive(false);
             _Qtesprite_Y.SetActive(false);
             _Qtesprite_X.SetActive(false);
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
             _WaitingForKey = 0;
             _countingDown = 0;
         }
@@ -121,13 +125,13 @@ public class QTEAreaDectection : MonoBehaviour
             UnityEngine.Debug.Log("Reussite QTE");
             PlayerControler.qteSpeedReset();//fonction victoire
 
-            yield return new WaitForSeconds(1.5f);
+            //yield return new WaitForSeconds(0.5f);
             _CorrectKey= 0;
             _Qtesprite_A.SetActive(false);
             _Qtesprite_B.SetActive(false);
             _Qtesprite_Y.SetActive(false);
             _Qtesprite_X.SetActive(false);
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
             _WaitingForKey = 0;
             _countingDown= 0;
         }
@@ -135,23 +139,20 @@ public class QTEAreaDectection : MonoBehaviour
         if (_CorrectKey == 2)
         {
             _countingDown = 2;
-            UnityEngine.Debug.Log("Echec QTE button");//fonction defaite
-            yield return new WaitForSeconds(1.5f);
+
+            UnityEngine.Debug.Log("Echec QTE button");
+            _gameManager.gameOverMenu();//fonction defaite
+
+           // yield return new WaitForSeconds(0.5f);
             _CorrectKey = 0;
             _Qtesprite_A.SetActive(false);
             _Qtesprite_B.SetActive(false);
             _Qtesprite_Y.SetActive(false);
             _Qtesprite_X.SetActive(false);
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
             _WaitingForKey = 0;
             _countingDown = 0;
         }
-    }
-
-    public void GameOver()
-    {
-        //condition game over
-        UnityEngine.Debug.Log("Game Over");
     }
     
 }
