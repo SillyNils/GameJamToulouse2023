@@ -118,13 +118,35 @@ public class EventManager : MonoBehaviour
     public float solarFlareEvent(float initYspeed, float timing, float amplitude, float delay)
     {
         // param timing : durée de l'event
-        return initYspeed;
+        if(Time.time <= delay)
+        {
+            return initYspeed;
+        }
+        if (Time.time <= timing/3)
+        {
+            return initYspeed + (Time.time - delay) / (timing/3 - delay) * amplitude;
+        }
+        if (Time.time > timing/3)
+        {
+            return initYspeed + amplitude + (timing / 3 - Time.time)/(2*timing / 3) * amplitude;
+        }
     }
 
     public float meteorologicEvent(float initYspeed, float timing, float amplitude, float delay)
     {
         // param timing : durée de l'event
-        return initYspeed;
+        if (Time.time <= 2 * timing / 3)
+        {
+            return initYspeed - amplitude * Time.time / (2*timing/3);
+        }
+        if (Time.time <= timing - delay)
+        {
+            return initYspeed - amplitude - (((2 * timing / 3) - Time.time) / ((timing / 3) + delay)) * amplitude;
+        }
+        if (Time.time > timing - delay)
+        {
+            return initYspeed;
+        }
     }
 
     public float tsunamiEvent(float initYspeed, float timing, float amplitude, float _maxTravelDistance)
