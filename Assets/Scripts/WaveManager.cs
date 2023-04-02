@@ -4,7 +4,9 @@ using UnityEngine;
 
 class WaveEvent
 {
-    List<EventObject> events;
+    List<EventObject> events = new List<EventObject>();
+
+    public List<EventObject> Events { get => events; set => events = value; }
 }
 
 public class WaveManager : MonoBehaviour
@@ -38,7 +40,17 @@ public class WaveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //addEvent();
+        _waves = new List<WaveEvent>();
+        _waveIndex = 0;
+        _eventIndex = 0;
+        _waveComplete = false;
+        firstWave();
+        secondWave();
+        thirdWave();
+        forthWave();
+        fifthWave();
+        sixthWave();
+        unlimitedWave();
     }
 
     // Update is called once per frame
@@ -72,75 +84,85 @@ public class WaveManager : MonoBehaviour
     }
     void firstWave()
     {
-        addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0);
+        WaveEvent waveEvent = new WaveEvent();
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        _waves.Add(waveEvent);
     }
 
     void secondWave()
     {
-        addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0);
+        WaveEvent waveEvent = new WaveEvent();
+        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        _waves.Add(waveEvent);
     }
 
     void thirdWave()
     {
-        addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0);
+        WaveEvent waveEvent = new WaveEvent();
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        _waves.Add(waveEvent); 
     }
 
-    void fourthWave()
+    void forthWave()
     {
-        addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0);
+        WaveEvent waveEvent = new WaveEvent();
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        _waves.Add(waveEvent);
     }
 
     void fifthWave()
     {
-        addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0);
+        WaveEvent waveEvent = new WaveEvent();
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        _waves.Add(waveEvent); 
     }
     void sixthWave()
     {
-        addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0);
+        WaveEvent waveEvent = new WaveEvent();
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        _waves.Add(waveEvent); 
     }
 
     void unlimitedWave()
     {
-        addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0);
-        addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0);
+        WaveEvent waveEvent = new WaveEvent();
+        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.Events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 0, 120f, 0));
+        _waves.Add(waveEvent); 
     }
 
-    void addCustomEvent(EventEnum type, float timing, float amplitude, float delay, float frequency, float maxTravelDistance)
+    EventObject addCustomEvent(EventEnum type, float timing, float amplitude, float delay, float frequency, float maxTravelDistance)
     {
-        if (eventManager.EventList.Count < 3)
-        {
-            EventObject eventToAdd = new EventObject();
-            eventToAdd.type = _type;
-            eventToAdd.timing = _timing;
-            eventToAdd.amplitude = _amplitude;
-            eventToAdd.initAmplitude = _amplitude;
-            eventToAdd.delay = _delay;
-            eventToAdd.frequency = _frequency;
-            eventToAdd.maxTravelDistance = _maxTravelDistance;
-            eventToAdd.initTime = Time.time;
-            eventManager.addEvent(eventToAdd);
-        }
+        EventObject eventToAdd = new EventObject();
+        eventToAdd.type = _type;
+        eventToAdd.timing = _timing;
+        eventToAdd.amplitude = _amplitude;
+        eventToAdd.initAmplitude = _amplitude;
+        eventToAdd.delay = _delay;
+        eventToAdd.frequency = _frequency;
+        eventToAdd.maxTravelDistance = _maxTravelDistance;
+        eventToAdd.initTime = Time.time;
+        return eventToAdd;
     }
 }
