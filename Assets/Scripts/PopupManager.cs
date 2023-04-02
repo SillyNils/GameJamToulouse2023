@@ -54,7 +54,6 @@ public class PopupManager : MonoBehaviour
         panelPrincipesJeu.SetActive(false);
         Time.timeScale = 1f;
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(closeButtonSeisme);
     }
 
     public void CloseButtonSeisme()
@@ -62,7 +61,6 @@ public class PopupManager : MonoBehaviour
         PlayClickSound();
         panelSeisme.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(closeButtonIntemperies);
     }
 
     public void CloseButtonIntemperies()
@@ -70,7 +68,6 @@ public class PopupManager : MonoBehaviour
         PlayClickSound();
         panelIntemperies.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(closeButtonTempetesSolaires);
     }
 
     public void CloseButtonTempetesSolaires()
