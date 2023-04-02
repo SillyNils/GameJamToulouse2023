@@ -22,6 +22,8 @@ public class PlayerControler : MonoBehaviour
 
     [SerializeField] private GeneralRotation _YGrotation;
 
+    private bool _PlayerIsInNormalState = true;
+    [SerializeField] private float _PlayerSafeZone;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,7 @@ public class PlayerControler : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        PlayerInNormalState();
 
         Vector2 input = new Vector2(Input.GetAxis("X axis"), Input.GetAxis("Y axis"));
 
@@ -71,6 +74,22 @@ public class PlayerControler : MonoBehaviour
             Quaternion localRot = transform.localRotation;
             localRot.eulerAngles = new Vector3(0, Vector2.SignedAngle(Vector2.down, input), 0);
             transform.localRotation = localRot;
+        }
+    }
+
+    public void PlayerInNormalState()
+    {
+        /*Debug.Log(Mathf.Rad2Deg * _emptyParentTransform.rotation.y);
+        Debug.Log(_PlayerIsInNormalState);*/
+
+
+       if (Mathf.Rad2Deg * _emptyParentTransform.rotation.y >= _PlayerSafeZone || Mathf.Rad2Deg * _emptyParentTransform.rotation.y <= -_PlayerSafeZone)
+        {
+            _PlayerIsInNormalState = false;
+        }
+        else
+        {
+            _PlayerIsInNormalState = true;
         }
     }
 }

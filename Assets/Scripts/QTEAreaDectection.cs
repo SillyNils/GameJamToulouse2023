@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,9 +14,12 @@ public class QTEAreaDectection : MonoBehaviour
     [SerializeField] GameObject _Qtesprite3;
     [SerializeField] GameObject _Qtesprite4;
 
-    private bool _TimerOff;
+    [SerializeField] private int _QTEGen;
+    [SerializeField] private int _WaitingForKey;
+    [SerializeField] private int _CorrectKey;
+    [SerializeField] private int _countingDown;
+    private bool _enter;
 
-    private int _RandQTE;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,94 +32,168 @@ public class QTEAreaDectection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (_enter)
+        {
+            if (_WaitingForKey == 0)
+            {
+                _QTEGen = 1; // Random.Range(1, 4);
+
+                _countingDown = 1;
+                StartCoroutine(QteTimer());
+                if (_QTEGen == 1)
+                {
+                    _WaitingForKey = 1;
+                    _Qtesprite1.SetActive(true);
+                }
+                if (_QTEGen == 2)
+                {
+                    _WaitingForKey = 1;
+                    _Qtesprite2.SetActive(true);
+                }
+                if (_QTEGen == 3)
+                {
+                    _WaitingForKey = 1;
+                    _Qtesprite3.SetActive(true);
+                }
+                if (_QTEGen == 4)
+                {
+                    _WaitingForKey = 1;
+                    _Qtesprite4.SetActive(true);
+                }
+            }
+
+            if (_QTEGen == 1)
+            {
+                if (Input.GetButtonDown("QTE 1"))
+                {
+                    _CorrectKey = 1;
+                    StartCoroutine(KeyPresing());
+                }
+                else
+                {
+                    _CorrectKey = 2;
+                    StartCoroutine(KeyPresing());
+                }
+            }
+
+
+            if (_QTEGen == 2)
+            {
+
+
+                if (Input.GetButtonDown("QTE 2"))
+                {
+                    _CorrectKey = 1;
+                    StartCoroutine(KeyPresing());
+                }
+                else
+                {
+                    _CorrectKey = 2;
+                    StartCoroutine(KeyPresing());
+                }
+
+            }
+
+            if (_QTEGen == 3)
+            {
+                if (Input.GetButtonDown("QTE 1") || Input.GetButtonDown("QTE 2") || Input.GetButtonDown("QTE 3") || Input.GetButtonDown("QTE "))
+                {
+                    if (Input.GetButtonDown("QTE 3"))
+                    {
+                        _CorrectKey = 1;
+                        StartCoroutine(KeyPresing());
+                    }
+                    else
+                    {
+                        _CorrectKey = 2;
+                        StartCoroutine(KeyPresing());
+                    }
+                }
+            }
+
+            if (_QTEGen == 4)
+            {
+                if (Input.anyKeyDown)
+                {
+                    if (Input.GetButtonDown("QTE 4"))
+                    {
+                        _CorrectKey = 1;
+                        StartCoroutine(KeyPresing());
+                    }
+                    else
+                    {
+                        _CorrectKey = 2;
+                        StartCoroutine(KeyPresing());
+                    }
+                }
+            }
+        }
     }
+
 
     public void OnTriggerEnter(Collider other)
     {
-
-
-        _RandQTE = 1;//Random.Range(1,4);
-
-    if(_RandQTE == 1)
-        {
-            _Qtesprite1.SetActive(true);
-            if (Input.GetKeyDown("joystick button 0"))
-            {
-                //condition reset perso
-                Debug.Log("victoire QTE");
-                StartCoroutine(QteTimer());
-            }
-            else if (_TimerOff)
-            {
-                _Qtesprite1.SetActive(false);
-                GameOver();
-            }
-        }
-    else if(_RandQTE == 2)
-        {
-            _Qtesprite2.SetActive(true);
-            if (Input.GetKeyDown("joystick button 1"))
-            {
-                //condition reset perso
-                Debug.Log("victoire QTE");
-                StartCoroutine(QteTimer());
-            }
-            else 
-            {
-                _Qtesprite2.SetActive(false);
-                GameOver();
-            }
-        }
-    else if (_RandQTE== 3)
-        {
-            _Qtesprite3.SetActive(true);
-           
-            if (Input.GetKeyDown("joystick button 2"))
-            {
-                //condition reset perso
-                Debug.Log("victoire QTE");
-                StartCoroutine(QteTimer());
-            }
-            else
-            {
-                _Qtesprite3.SetActive(false);
-                GameOver();
-            }
-        }
-    else if (_RandQTE== 4) 
-        {
-            _Qtesprite4.SetActive(true);
-            
-
-            if (Input.GetKeyDown("joystick button 3"))
-            {
-                //condition reset perso
-                Debug.Log("victoire QTE");
-                StartCoroutine(QteTimer());
-            }
-            else
-            {
-                _Qtesprite4.SetActive(false);
-                GameOver();
-            }
-        }
-
+        _enter = true;
     }
 
     IEnumerator QteTimer()
     {
-        Debug.Log("top");
-        _TimerOff= false;
-        yield return new WaitForSeconds(3.5f);
-        _TimerOff= true;
-        Debug.Log(_TimerOff);
+     yield return new WaitForSeconds(3.5f);
+        if(_countingDown == 1)
+        {
+            _QTEGen = 4;
+            _countingDown= 2;
+            UnityEngine.Debug.Log("Echec QTE Timer");
+            yield return new WaitForSeconds(1.5f);
+            _CorrectKey = 0;
+            _Qtesprite1.SetActive(false);
+            _Qtesprite2.SetActive(false);
+            _Qtesprite3.SetActive(false);
+            _Qtesprite4.SetActive(false);
+            yield return new WaitForSeconds(1.5f);
+            _WaitingForKey = 0;
+            _countingDown = 0;
+        }
+    }
+
+    IEnumerator KeyPresing()
+    {
+        _QTEGen = 4;
+        if(_CorrectKey == 1)
+        {
+            _countingDown = 2;
+            UnityEngine.Debug.Log("Reussite QTE");//fonction victoire
+            yield return new WaitForSeconds(1.5f);
+            _CorrectKey= 0;
+            _Qtesprite1.SetActive(false);
+            _Qtesprite2.SetActive(false);
+            _Qtesprite3.SetActive(false);
+            _Qtesprite4.SetActive(false);
+            yield return new WaitForSeconds(1.5f);
+            _WaitingForKey = 0;
+            _countingDown= 0;
+        }
+
+        if (_CorrectKey == 2)
+        {
+            _countingDown = 2;
+            UnityEngine.Debug.Log("Echec QTE button");//fonction victoire
+            yield return new WaitForSeconds(1.5f);
+            _CorrectKey = 0;
+            _Qtesprite1.SetActive(false);
+            _Qtesprite2.SetActive(false);
+            _Qtesprite3.SetActive(false);
+            _Qtesprite4.SetActive(false);
+            yield return new WaitForSeconds(1.5f);
+            _WaitingForKey = 0;
+            _countingDown = 0;
+        }
     }
 
     public void GameOver()
     {
         //condition game over
-        Debug.Log("Game Over");
+        UnityEngine.Debug.Log("Game Over");
     }
     
 }
