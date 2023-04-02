@@ -18,7 +18,7 @@ public class QTEAreaDectection : MonoBehaviour
     [SerializeField] private int _WaitingForKey;
     [SerializeField] private int _CorrectKey;
     [SerializeField] private int _countingDown;
-    private bool _enter;
+    private bool _enter = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,14 +32,17 @@ public class QTEAreaDectection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UnityEngine.Debug.Log(_enter);
         if (_enter)
         {
+            
             if (_WaitingForKey == 0)
             {
-                _QTEGen = 1; // Random.Range(1, 4);
+                _QTEGen = Random.Range(1, 4);
 
                 _countingDown = 1;
                 StartCoroutine(QteTimer());
+                
                 if (_QTEGen == 1)
                 {
                     _WaitingForKey = 1;
@@ -62,72 +65,22 @@ public class QTEAreaDectection : MonoBehaviour
                 }
             }
 
-            if (_QTEGen == 1)
+            if (Input.GetButtonDown("QTE 1") || Input.GetButtonDown("QTE 2") || Input.GetButtonDown("QTE 3") || Input.GetButtonDown("QTE 4"))
             {
-                if (Input.GetButtonDown("QTE 1"))
+                if (Input.GetButtonDown("QTE " + _QTEGen))
                 {
                     _CorrectKey = 1;
-                    StartCoroutine(KeyPresing());
+                    
                 }
                 else
                 {
                     _CorrectKey = 2;
-                    StartCoroutine(KeyPresing());
                 }
-            }
-
-
-            if (_QTEGen == 2)
-            {
-
-
-                if (Input.GetButtonDown("QTE 2"))
-                {
-                    _CorrectKey = 1;
-                    StartCoroutine(KeyPresing());
-                }
-                else
-                {
-                    _CorrectKey = 2;
-                    StartCoroutine(KeyPresing());
-                }
-
-            }
-
-            if (_QTEGen == 3)
-            {
-                if (Input.GetButtonDown("QTE 1") || Input.GetButtonDown("QTE 2") || Input.GetButtonDown("QTE 3") || Input.GetButtonDown("QTE "))
-                {
-                    if (Input.GetButtonDown("QTE 3"))
-                    {
-                        _CorrectKey = 1;
-                        StartCoroutine(KeyPresing());
-                    }
-                    else
-                    {
-                        _CorrectKey = 2;
-                        StartCoroutine(KeyPresing());
-                    }
-                }
-            }
-
-            if (_QTEGen == 4)
-            {
-                if (Input.anyKeyDown)
-                {
-                    if (Input.GetButtonDown("QTE 4"))
-                    {
-                        _CorrectKey = 1;
-                        StartCoroutine(KeyPresing());
-                    }
-                    else
-                    {
-                        _CorrectKey = 2;
-                        StartCoroutine(KeyPresing());
-                    }
-                }
+                StartCoroutine(KeyPresing());
+                _enter = false;
             }
         }
+        
     }
 
 
@@ -135,6 +88,7 @@ public class QTEAreaDectection : MonoBehaviour
     {
         _enter = true;
     }
+    
 
     IEnumerator QteTimer()
     {
