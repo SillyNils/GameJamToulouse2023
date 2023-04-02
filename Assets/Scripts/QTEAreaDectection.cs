@@ -9,10 +9,10 @@ public class QTEAreaDectection : MonoBehaviour
 {
     //private bool _EnterDetected = false;
 
-    [SerializeField] GameObject _Qtesprite1;
-    [SerializeField] GameObject _Qtesprite2;
-    [SerializeField] GameObject _Qtesprite3;
-    [SerializeField] GameObject _Qtesprite4;
+    [SerializeField] GameObject _Qtesprite_A;
+    [SerializeField] GameObject _Qtesprite_B;
+    [SerializeField] GameObject _Qtesprite_Y;
+    [SerializeField] GameObject _Qtesprite_X;
 
     [SerializeField] private int _QTEGen;
     [SerializeField] private int _WaitingForKey;
@@ -23,49 +23,49 @@ public class QTEAreaDectection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _Qtesprite1.SetActive(false);
-        _Qtesprite2.SetActive(false);
-        _Qtesprite3.SetActive(false);
-        _Qtesprite4.SetActive(false);
+        _Qtesprite_A.SetActive(false);
+        _Qtesprite_B.SetActive(false);
+        _Qtesprite_Y.SetActive(false);
+        _Qtesprite_X.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        UnityEngine.Debug.Log(_enter);
+        //UnityEngine.Debug.Log(_enter);
         if (_enter)
         {
             
             if (_WaitingForKey == 0)
             {
-                _QTEGen = Random.Range(1, 4);
+                _QTEGen = Random.Range(0, 4);
 
                 _countingDown = 1;
                 StartCoroutine(QteTimer());
                 
+                if (_QTEGen == 0)
+                {
+                    _WaitingForKey = 1;
+                    _Qtesprite_A.SetActive(true);
+                }
                 if (_QTEGen == 1)
                 {
                     _WaitingForKey = 1;
-                    _Qtesprite1.SetActive(true);
+                    _Qtesprite_B.SetActive(true);
                 }
                 if (_QTEGen == 2)
                 {
                     _WaitingForKey = 1;
-                    _Qtesprite2.SetActive(true);
+                    _Qtesprite_Y.SetActive(true);
                 }
                 if (_QTEGen == 3)
                 {
                     _WaitingForKey = 1;
-                    _Qtesprite3.SetActive(true);
-                }
-                if (_QTEGen == 4)
-                {
-                    _WaitingForKey = 1;
-                    _Qtesprite4.SetActive(true);
+                    _Qtesprite_X.SetActive(true);
                 }
             }
 
-            if (Input.GetButtonDown("QTE 1") || Input.GetButtonDown("QTE 2") || Input.GetButtonDown("QTE 3") || Input.GetButtonDown("QTE 4"))
+            if (Input.GetButtonDown("QTE 0") || Input.GetButtonDown("QTE 1") || Input.GetButtonDown("QTE 2") || Input.GetButtonDown("QTE 3"))
             {
                 if (Input.GetButtonDown("QTE " + _QTEGen))
                 {
@@ -100,10 +100,10 @@ public class QTEAreaDectection : MonoBehaviour
             UnityEngine.Debug.Log("Echec QTE Timer");
             yield return new WaitForSeconds(1.5f);
             _CorrectKey = 0;
-            _Qtesprite1.SetActive(false);
-            _Qtesprite2.SetActive(false);
-            _Qtesprite3.SetActive(false);
-            _Qtesprite4.SetActive(false);
+            _Qtesprite_A.SetActive(false);
+            _Qtesprite_B.SetActive(false);
+            _Qtesprite_Y.SetActive(false);
+            _Qtesprite_X.SetActive(false);
             yield return new WaitForSeconds(1.5f);
             _WaitingForKey = 0;
             _countingDown = 0;
@@ -119,10 +119,10 @@ public class QTEAreaDectection : MonoBehaviour
             UnityEngine.Debug.Log("Reussite QTE");//fonction victoire
             yield return new WaitForSeconds(1.5f);
             _CorrectKey= 0;
-            _Qtesprite1.SetActive(false);
-            _Qtesprite2.SetActive(false);
-            _Qtesprite3.SetActive(false);
-            _Qtesprite4.SetActive(false);
+            _Qtesprite_A.SetActive(false);
+            _Qtesprite_B.SetActive(false);
+            _Qtesprite_Y.SetActive(false);
+            _Qtesprite_X.SetActive(false);
             yield return new WaitForSeconds(1.5f);
             _WaitingForKey = 0;
             _countingDown= 0;
@@ -134,10 +134,10 @@ public class QTEAreaDectection : MonoBehaviour
             UnityEngine.Debug.Log("Echec QTE button");//fonction victoire
             yield return new WaitForSeconds(1.5f);
             _CorrectKey = 0;
-            _Qtesprite1.SetActive(false);
-            _Qtesprite2.SetActive(false);
-            _Qtesprite3.SetActive(false);
-            _Qtesprite4.SetActive(false);
+            _Qtesprite_A.SetActive(false);
+            _Qtesprite_B.SetActive(false);
+            _Qtesprite_Y.SetActive(false);
+            _Qtesprite_X.SetActive(false);
             yield return new WaitForSeconds(1.5f);
             _WaitingForKey = 0;
             _countingDown = 0;
