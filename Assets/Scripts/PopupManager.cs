@@ -6,14 +6,17 @@ using UnityEngine.UI;
 
 public class PopupManager : MonoBehaviour
 {
+    [Header("Son")]
     [SerializeField] private AudioSource buttonClickSound;
 
+    [Header("Panels")]
     [SerializeField] private GameObject panelControles;
     [SerializeField] private GameObject panelPrincipesJeu;
     [SerializeField] private GameObject panelTempetesSolaires;
     [SerializeField] private GameObject panelSeisme;
     [SerializeField] private GameObject panelIntemperies;
 
+    [Header("Buttons")]
     [SerializeField] private GameObject closeButtonPrincipesJeu;
     [SerializeField] private GameObject closeButtonSeisme;
     [SerializeField] private GameObject closeButtonIntemperies;
@@ -22,6 +25,7 @@ public class PopupManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 0f;
         panelControles.SetActive(true);
         panelPrincipesJeu.SetActive(false);
         panelIntemperies.SetActive(false);
@@ -48,8 +52,8 @@ public class PopupManager : MonoBehaviour
     {
         PlayClickSound();
         panelPrincipesJeu.SetActive(false);
+        Time.timeScale = 1f;
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(closeButtonSeisme);
     }
 
     public void CloseButtonSeisme()
@@ -57,7 +61,6 @@ public class PopupManager : MonoBehaviour
         PlayClickSound();
         panelSeisme.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(closeButtonIntemperies);
     }
 
     public void CloseButtonIntemperies()
@@ -65,7 +68,6 @@ public class PopupManager : MonoBehaviour
         PlayClickSound();
         panelIntemperies.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(closeButtonTempetesSolaires);
     }
 
     public void CloseButtonTempetesSolaires()
