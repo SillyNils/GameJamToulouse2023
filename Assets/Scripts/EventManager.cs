@@ -24,6 +24,7 @@ public class EventManager : MonoBehaviour
     List<EventObject> eventList = new List<EventObject>();
 
     public GeneralRotation generalRotation;
+    public PlayerControler playerControler;
 
     public List<EventObject> EventList { get => eventList; set => eventList = value; }
 
@@ -102,7 +103,7 @@ public class EventManager : MonoBehaviour
 
     void reduceAmplitudeEvent(EventObject eventToRead, bool globalIsInNormalState)
     {
-        if(globalIsInNormalState)
+        if(playerControler.playerIsInNormalState)
         {
             eventToRead.validTime += Time.deltaTime;
             eventToRead.amplitude = eventToRead.initAmplitude * (1 - eventToRead.validTime / eventToRead.timing);

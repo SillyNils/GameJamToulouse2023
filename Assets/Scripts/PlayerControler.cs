@@ -26,6 +26,9 @@ public class PlayerControler : MonoBehaviour
 
     private bool _PlayerIsInNormalState = true;
     [SerializeField] private float _PlayerSafeZone;
+
+    public bool playerIsInNormalState { get => _PlayerIsInNormalState; set => _PlayerIsInNormalState = value; }
+
     // Start is called before the first frame update
     void Start()
     {
