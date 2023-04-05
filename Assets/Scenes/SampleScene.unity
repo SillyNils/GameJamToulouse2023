@@ -810,7 +810,7 @@ MonoBehaviour:
   _meteorite_audiosource: {fileID: 1966061871}
   _looser_audiosource: {fileID: 1709608551}
   _fadeRate: 0.001
-  _trackNumber: 0
+  _track: 1
 --- !u!4 &529270209 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fe6a8b841a4732940a1bb98a4bbe6cc6,
