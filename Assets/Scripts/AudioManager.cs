@@ -97,7 +97,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    IEnumerator LooserPlaying()
+    IEnumerator LooserPlaying()//gere laudio de la defaite
     {
         _looser_audiosource.Play();
         _looserIsplaying = _looser_audiosource.isPlaying;
