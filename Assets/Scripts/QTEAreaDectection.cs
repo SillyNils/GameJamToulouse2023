@@ -22,6 +22,8 @@ public class QTEAreaDectection : MonoBehaviour
 
     public PlayerControler PlayerControler;
     public GameManager _gameManager;
+    [SerializeField] private float _QTETiming;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -94,7 +96,7 @@ public class QTEAreaDectection : MonoBehaviour
 
     IEnumerator QteTimer()
     {
-     yield return new WaitForSeconds(3.5f);
+     yield return new WaitForSeconds(_QTETiming);
         if(_countingDown == 1)
         {
             _QTEGen = 4;
@@ -143,7 +145,7 @@ public class QTEAreaDectection : MonoBehaviour
             UnityEngine.Debug.Log("Echec QTE button");
             _gameManager.gameOverMenu();//fonction defaite
 
-           // yield return new WaitForSeconds(0.5f);
+           
             _CorrectKey = 0;
             _Qtesprite_A.SetActive(false);
             _Qtesprite_B.SetActive(false);
