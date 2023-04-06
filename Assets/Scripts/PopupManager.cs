@@ -10,6 +10,7 @@ public class PopupManager : MonoBehaviour
     [SerializeField] private AudioSource buttonClickSound;
 
     [Header("Panels")]
+    [SerializeField] private GameObject panelHistoire;
     [SerializeField] private GameObject panelControles;
     [SerializeField] private GameObject panelPrincipesJeu;
     [SerializeField] private GameObject panelTempetesSolaires;
@@ -17,6 +18,8 @@ public class PopupManager : MonoBehaviour
     [SerializeField] private GameObject panelIntemperies;
 
     [Header("Buttons")]
+    [SerializeField] private GameObject nextButtonHistoire;
+    [SerializeField] private GameObject nextButtonPanelControles;
     [SerializeField] private GameObject closeButtonPrincipesJeu;
     [SerializeField] private GameObject closeButtonSeisme;
     [SerializeField] private GameObject closeButtonIntemperies;
@@ -26,11 +29,13 @@ public class PopupManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 0f;
-        panelControles.SetActive(true);
+        panelHistoire.SetActive(true);
+        panelControles.SetActive(false);
         panelPrincipesJeu.SetActive(false);
         panelIntemperies.SetActive(false);
         panelSeisme.SetActive(false);
         panelTempetesSolaires.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(nextButtonHistoire);
     }
 
     // Update is called once per frame
@@ -39,7 +44,16 @@ public class PopupManager : MonoBehaviour
         
     }
 
-    public void NextButton()
+    public void NextButtonHistoire()
+    {
+        PlayClickSound();
+        panelHistoire.SetActive(false);
+        panelControles.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(nextButtonPanelControles);
+    }
+
+    public void NextButtonPanelControles()
     {
         PlayClickSound();
         panelControles.SetActive(false);
@@ -56,10 +70,32 @@ public class PopupManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
     }
 
+    public void SeismPanel()
+    {
+        Time.timeScale = 0f;
+        EventSystem.current.SetSelectedGameObject(closeButtonSeisme);
+        panelSeisme.SetActive(true);
+    }
+
+    public void CloudPanel()
+    {
+        Time.timeScale = 0f;
+        EventSystem.current.SetSelectedGameObject(closeButtonIntemperies);
+        panelIntemperies.SetActive(true);
+    }
+
+    public void SolarflarePanel()
+    {
+        Time.timeScale = 0f;
+        EventSystem.current.SetSelectedGameObject(closeButtonTempetesSolaires);
+        panelTempetesSolaires.SetActive(true);
+    }
+
     public void CloseButtonSeisme()
     {
         PlayClickSound();
         panelSeisme.SetActive(false);
+        Time.timeScale = 1f;
         EventSystem.current.SetSelectedGameObject(null);
     }
 
@@ -67,6 +103,7 @@ public class PopupManager : MonoBehaviour
     {
         PlayClickSound();
         panelIntemperies.SetActive(false);
+        Time.timeScale = 1f;
         EventSystem.current.SetSelectedGameObject(null);
     }
 
@@ -74,6 +111,8 @@ public class PopupManager : MonoBehaviour
     {
         PlayClickSound();
         panelTempetesSolaires.SetActive(false);
+        Time.timeScale = 1f;
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void PlayClickSound()
