@@ -25,6 +25,9 @@ public class PopupManager : MonoBehaviour
     [SerializeField] private GameObject closeButtonIntemperies;
     [SerializeField] private GameObject closeButtonTempetesSolaires;
 
+    [Header("WaveManager parameter")]
+    [SerializeField] private WaveManager waveManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +44,18 @@ public class PopupManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        switch (waveManager.WaveIndex)
+        {
+            case 0:
+                SeismPanel();
+                break;
+            case 1:
+                CloudPanel();
+                break;
+            case 2:
+                SolarflarePanel();
+                break;
+        }
     }
 
     public void NextButtonHistoire()

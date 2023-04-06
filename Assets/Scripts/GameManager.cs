@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject _GameOverPanel;
+
+    [Header("EventManager parameter")]
+    [SerializeField] private EventManager eventManager;
+
+    public GameObject GameOverPanel { get => _GameOverPanel; set => _GameOverPanel = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +28,7 @@ public class GameManager : MonoBehaviour
     public void gameOverMenu()
     {
         Time.timeScale= 0f;
+        eventManager.EventList.Clear();
         _GameOverPanel.SetActive(true);
     }
 

@@ -43,6 +43,8 @@ public class WaveManager : MonoBehaviour
     private float _minimalTimeBetweenEvent;
     private float _timeSinceLastEventTriggered;
 
+    public int WaveIndex { get => _waveIndex; set => _waveIndex = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,7 +72,6 @@ public class WaveManager : MonoBehaviour
 
     void firstWave()
     {
-        _popupManager.SeismPanel();
         WaveEvent waveEvent = new();
         waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
         _waves.Add(waveEvent);
@@ -78,7 +79,6 @@ public class WaveManager : MonoBehaviour
 
     void secondWave()
     {
-        _popupManager.CloudPanel();
         WaveEvent waveEvent = new WaveEvent();
         waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 2f, 0f, 0));
         _waves.Add(waveEvent);
@@ -86,7 +86,6 @@ public class WaveManager : MonoBehaviour
 
     void thirdWave()
     {
-        _popupManager.SolarflarePanel();
         WaveEvent waveEvent = new WaveEvent();
         waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 2f, 0f, 0));
         _waves.Add(waveEvent); 
@@ -139,7 +138,28 @@ public class WaveManager : MonoBehaviour
         waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 10f, 4f, 0, 0f, 0));
         waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 8f, 4f, 0, 0f, 0));
         waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 6f, 4f, 0, 0f, 0));
-        _waves.Add(waveEvent); 
+        _waves.Add(waveEvent);
+    }
+
+    void randomEventWave()
+    {
+        WaveEvent waveEvent = new WaveEvent();
+        do
+        {
+            switch(Random.Range(1,3))
+            {
+                case 1:
+                    waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+                    break;
+                case 2:
+                    waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 15f, 4f, 4f, 0f, 0));
+                    break;
+                case 3:
+                    waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 12f, 4f, 3f, 0f, 0));
+                    break;
+            }
+        } while (waveEvent.events.Count > _waves.Count+5);
+        _waves.Add(waveEvent);
     }
 
     EventObject addCustomEvent(EventEnum type, float timing, float amplitude, float delay, float frequency, float maxTravelDistance)
