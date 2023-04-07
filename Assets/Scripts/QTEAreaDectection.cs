@@ -23,6 +23,7 @@ public class QTEAreaDectection : MonoBehaviour
     public PlayerControler PlayerControler;
 
     public PopupManager _popupManager;
+    [SerializeField]private float _QTETiming;
 
     // Start is called before the first frame update
     void Start()
