@@ -43,7 +43,7 @@ public class QTEAreaDectection : MonoBehaviour
             
             if (_WaitingForKey == 0)
             {
-                _QTEGen = Random.Range(0, 4);
+                _QTEGen = Random.Range(0, 3);
 
                 _countingDown = 1;
                 StartCoroutine(QteTimer());
