@@ -70,7 +70,6 @@ public class WaveManager : MonoBehaviour
 
     void firstWave()
     {
-        _popupManager.SeismPanel();
         WaveEvent waveEvent = new();
         waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
         _waves.Add(waveEvent);
@@ -78,7 +77,6 @@ public class WaveManager : MonoBehaviour
 
     void secondWave()
     {
-        _popupManager.CloudPanel();
         WaveEvent waveEvent = new WaveEvent();
         waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 2f, 0f, 0));
         _waves.Add(waveEvent);
@@ -86,7 +84,6 @@ public class WaveManager : MonoBehaviour
 
     void thirdWave()
     {
-        _popupManager.SolarflarePanel();
         WaveEvent waveEvent = new WaveEvent();
         waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 2f, 0f, 0));
         _waves.Add(waveEvent); 
