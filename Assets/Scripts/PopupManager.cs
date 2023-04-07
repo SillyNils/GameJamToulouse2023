@@ -99,14 +99,12 @@ public class PopupManager : MonoBehaviour
         panelTempetesSolaires.SetActive(true);
     }
 
-
     public void GameOverMenu()
     {
         Time.timeScale = 0f;
         EventSystem.current.SetSelectedGameObject(_boutonMenu);
         _panelGameOver.SetActive(true);
     }
-
 
     public void CloseButtonSeisme()
     {
