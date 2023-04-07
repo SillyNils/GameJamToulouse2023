@@ -21,8 +21,8 @@ public class QTEAreaDectection : MonoBehaviour
     private bool _enter = false;
 
     public PlayerControler PlayerControler;
-    public GameManager _gameManager;
-    [SerializeField] private float _QTETiming;
+
+    public PopupManager _popupManager;
 
     // Start is called before the first frame update
     void Start()
@@ -103,7 +103,7 @@ public class QTEAreaDectection : MonoBehaviour
             _countingDown= 2;
 
             UnityEngine.Debug.Log("Echec QTE Timer");
-            _gameManager.gameOverMenu();//fonction defaite
+            _popupManager.GameOverMenu();//fonction defaite
 
             //yield return new WaitForSeconds(0.5f);
             _CorrectKey = 0;
@@ -143,7 +143,7 @@ public class QTEAreaDectection : MonoBehaviour
             _countingDown = 2;
 
             UnityEngine.Debug.Log("Echec QTE button");
-            _gameManager.gameOverMenu();//fonction defaite
+            _popupManager.GameOverMenu();//fonction defaite
 
            
             _CorrectKey = 0;
