@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 class WaveEvent
@@ -35,16 +37,18 @@ public class WaveManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private PopupManager _popupManager;
 
-    [Header("Audio")]
-    [SerializeField] private AudioManager _audioManager;
-
     private bool _waveComplete;
     private List<WaveEvent> _waves = new();
     private int _waveIndex;
     private int _eventIndex;
+    private EventObject lastEvent;
     private int _nbSimultaneousEvent;
     private float _minimalTimeBetweenEvent;
     private float _timeSinceLastEventTriggered;
+    private bool _coroutineStarted;
+
+    public EventObject LastEvent { get => lastEvent; set => lastEvent = value; }
+
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +60,8 @@ public class WaveManager : MonoBehaviour
         _minimalTimeBetweenEvent = 5f;
         _timeSinceLastEventTriggered = Time.time;
         _waveComplete = false;
+        _coroutineStarted = false;
+        lastEvent = null;
         firstWave();
         secondWave();
         thirdWave();
@@ -73,17 +79,17 @@ public class WaveManager : MonoBehaviour
 
     void firstWave()
     {
-        _popupManager.SeismPanel();
+        //_popupManager.SeismPanel();
         WaveEvent waveEvent = new();
-        waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 5f, 4f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 0.5f, 1f, 0, 120f, 0));
         _waves.Add(waveEvent);
     }
 
     void secondWave()
     {
-        _popupManager.CloudPanel();
+        //_popupManager.CloudPanel();
         WaveEvent waveEvent = new WaveEvent();
-        waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 5f, 4f, 2f, 0f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 10f, 4f, 2f, 0f, 0));
         _waves.Add(waveEvent);
     }
 
@@ -91,7 +97,7 @@ public class WaveManager : MonoBehaviour
     {
         _popupManager.SolarflarePanel();
         WaveEvent waveEvent = new WaveEvent();
-        waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 5f, 4f, 2f, 0f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 10f, 4f, 2f, 0f, 0));
         _waves.Add(waveEvent); 
     }
 
@@ -172,6 +178,7 @@ public class WaveManager : MonoBehaviour
                     if (eventManager.EventList.Count < _nbSimultaneousEvent && (Time.time - _timeSinceLastEventTriggered) >= _minimalTimeBetweenEvent)
                     {
                         eventManager.addEvent(wave.events[_eventIndex]);
+                        lastEvent = wave.events[_eventIndex];
                         _timeSinceLastEventTriggered = Time.time;
                         _eventIndex++;
                     }
@@ -180,12 +187,30 @@ public class WaveManager : MonoBehaviour
                 {
                     // Tous les events de la Wave ont été trigger
                     _waveComplete = eventManager.EventList.Count == 0;
-                    _waveIndex = _waveComplete ? _waveIndex++ : _waveIndex;
-                    _eventIndex = _waveComplete ? 0 : _eventIndex;
+                    if(_waveComplete && !_coroutineStarted)
+                    {
+                        StartCoroutine(waitBetweenWaves());
+                    }
+                    
                 }
             }
         }
     }
+
+    IEnumerator waitBetweenWaves()
+    {
+        _coroutineStarted = true;
+        Debug.Log("debut waitBetweenWaves");
+        Debug.Log(_waveIndex);
+        yield return new WaitForSeconds(5f);
+        _waveIndex = _waveIndex + 1 ;
+        _eventIndex = 0;
+        _waveComplete = false;
+        Debug.Log(_waveIndex);
+        Debug.Log("fin waitBetweenWaves");
+        _coroutineStarted = false;
+    }
+
     IEnumerator addEvent()
     {
         Debug.Log("debut event");

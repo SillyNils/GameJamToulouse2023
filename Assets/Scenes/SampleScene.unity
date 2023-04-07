@@ -822,6 +822,9 @@ MonoBehaviour:
   _meteorite_audiosource: {fileID: 1966061871}
   _looser_audiosource: {fileID: 1709608551}
   _buttonClick_audiosource: {fileID: 2027351852}
+  waveManager: {fileID: 703325672}
+  qteAreaDectectionLeft: {fileID: 1392043171}
+  qteAreaDectectionRight: {fileID: 1184476896}
   _fadeRate: 0.001
   _track: 1
 --- !u!4 &529270209 stripped
@@ -1412,7 +1415,7 @@ MonoBehaviour:
   _deltaDeplacement: 0.45
   _deltaInput: 0.05
   _YGrotation: {fileID: 756321944}
-  _PlayerSafeZone: 0
+  _PlayerSafeZone: 5
 --- !u!33 &1034188047
 MeshFilter:
   m_ObjectHideFlags: 0
