@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -50,8 +51,7 @@ public class EventManager : MonoBehaviour
         float initYRotationSpeed = 100f;
         float finalYRotationSpeed = initYRotationSpeed;
 
-
-        foreach (EventObject eventToRead in eventList)
+        foreach (EventObject eventToRead in eventList.ToList())
         {
             switch (eventToRead.type)
             {
@@ -103,7 +103,7 @@ public class EventManager : MonoBehaviour
 
     void reduceAmplitudeEvent(EventObject eventToRead, bool globalIsInNormalState)
     {
-        if(playerControler.playerIsInNormalState)
+        if (playerControler.playerIsInNormalState)
         {
             eventToRead.validTime += Time.deltaTime;
             eventToRead.amplitude = eventToRead.initAmplitude * (1 - eventToRead.validTime / eventToRead.timing);
@@ -114,7 +114,7 @@ public class EventManager : MonoBehaviour
     {
         // param timing : duree d'action dans la SafeZone
         ///Debug.Log(amplitude * Mathf.Sin(frequency * 0.01f * Time.time));
-        return initYspeed + amplitude * Mathf.Sin(frequency * 0.01f * Time.time);
+        return initYspeed + amplitude * Mathf.Sin(frequency * Time.time);
         
     }
 

@@ -23,7 +23,11 @@ public class QTEAreaDectection : MonoBehaviour
     public PlayerControler PlayerControler;
 
     public PopupManager _popupManager;
-    [SerializeField]private float _QTETiming;
+    [SerializeField] private float _QTETiming;
+
+    private bool _gameOver;
+
+    public bool GameOver { get => _gameOver; set => _gameOver = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +36,7 @@ public class QTEAreaDectection : MonoBehaviour
         _Qtesprite_B.SetActive(false);
         _Qtesprite_Y.SetActive(false);
         _Qtesprite_X.SetActive(false);
+        _gameOver = false;
     }
 
     // Update is called once per frame
@@ -100,10 +105,11 @@ public class QTEAreaDectection : MonoBehaviour
      yield return new WaitForSeconds(_QTETiming);
         if(_countingDown == 1)
         {
-            _QTEGen = 4;
+            _QTEGen = 3;
             _countingDown= 2;
 
             UnityEngine.Debug.Log("Echec QTE Timer");
+            _gameOver = true;
             _popupManager.GameOverMenu();//fonction defaite
 
             //yield return new WaitForSeconds(0.5f);
