@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource _intemperie_audiosource;
     [SerializeField] AudioSource _meteorite_audiosource;
     [SerializeField] AudioSource _looser_audiosource;
+    [SerializeField] AudioSource _buttonClick_audiosource;
 
 
     [SerializeField] float _fadeRate;
@@ -106,5 +107,10 @@ public class AudioManager : MonoBehaviour
         _looser_audiosource.Play();
         _looserIsplaying = _looser_audiosource.isPlaying;
         yield return _looserIsplaying == false;
+    }
+
+    public void PlayClickSound()
+    {
+        _buttonClick_audiosource.Play();
     }
 }
