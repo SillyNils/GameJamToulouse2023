@@ -35,6 +35,9 @@ public class WaveManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private PopupManager _popupManager;
 
+    [Header("Audio")]
+    [SerializeField] private AudioManager _audioManager;
+
     private bool _waveComplete;
     private List<WaveEvent> _waves = new();
     private int _waveIndex;
@@ -183,12 +186,9 @@ public class WaveManager : MonoBehaviour
             }
         }
     }
-
-   /*
     IEnumerator addEvent()
     {
         Debug.Log("debut event");
-        _readyToEvent = false;
         if (eventManager.EventList.Count < 3)
         {
             EventObject eventToAdd = new EventObject();
@@ -203,8 +203,6 @@ public class WaveManager : MonoBehaviour
             eventManager.addEvent(eventToAdd);
         }
         yield return new WaitForSeconds(20f);
-        _readyToEvent = true;
         Debug.Log("fin event");
     }
-   */
 }

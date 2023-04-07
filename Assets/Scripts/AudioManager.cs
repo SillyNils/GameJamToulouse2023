@@ -17,8 +17,10 @@ public class AudioManager : MonoBehaviour
 
 
     [SerializeField] float _fadeRate;
-    [SerializeField] TrackEnum _track;
+    [SerializeField] EventEnum _track;
     private bool _looserIsplaying = false;
+
+    public EventEnum Track { get => _track; set => _track = value; }
 
 
     // Start is called before the first frame update
@@ -35,9 +37,9 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         switch(_track)
         {
+            /*
             case TrackEnum.BaseNeutre://base neutre
 
                 _baseNeutre_audiosource.volume += _fadeRate;
@@ -47,8 +49,8 @@ public class AudioManager : MonoBehaviour
                 _intemperie_audiosource.volume -= _fadeRate;
                 _meteorite_audiosource.volume -= _fadeRate;
                 break;
-            
-            case TrackEnum.SeismicEvent://seisme
+            */
+            case EventEnum.SeismicEvent://seisme
                 _seisme_audiosource.volume += _fadeRate;
 
                 _baseNeutre_audiosource.volume -= _fadeRate;
@@ -57,7 +59,7 @@ public class AudioManager : MonoBehaviour
                 _meteorite_audiosource.volume -= _fadeRate;
                 break;
 
-            case TrackEnum.SolarFlareEvent://tempete
+            case EventEnum.SolarFlareEvent://tempete
                 _tempete_audiosource.volume += _fadeRate;
 
                 _seisme_audiosource.volume -= _fadeRate;
@@ -66,7 +68,7 @@ public class AudioManager : MonoBehaviour
                 _meteorite_audiosource.volume -= _fadeRate;
                 break;
 
-            case TrackEnum.MeteorologicEvent://intemperie
+            case EventEnum.MeteorologicEvent://intemperie
                 _intemperie_audiosource.volume += _fadeRate;
 
                 _seisme_audiosource.volume -= _fadeRate;
@@ -75,7 +77,7 @@ public class AudioManager : MonoBehaviour
                 _meteorite_audiosource.volume -= _fadeRate;
                 break;
 
-            case TrackEnum.MeteorEvent://meteorite
+            case EventEnum.MeteorEvent://meteorite
                 _meteorite_audiosource.volume += _fadeRate;
 
                 _seisme_audiosource.volume -= _fadeRate;
@@ -83,7 +85,7 @@ public class AudioManager : MonoBehaviour
                 _intemperie_audiosource.volume -= _fadeRate;
                 _baseNeutre_audiosource.volume -= _fadeRate;
                 break;
-
+            /*
             case TrackEnum.Looser://looser
 
                 if (_looserIsplaying == false)
@@ -97,7 +99,7 @@ public class AudioManager : MonoBehaviour
                     _meteorite_audiosource.volume = 0;
                 }
                 break;
-
+            */
         }
     }
 
