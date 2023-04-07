@@ -38,7 +38,9 @@ public class PopupManager : MonoBehaviour
         panelIntemperies.SetActive(false);
         panelSeisme.SetActive(false);
         panelTempetesSolaires.SetActive(false);
+
         _panelGameOver.SetActive(false);
+
         EventSystem.current.SetSelectedGameObject(nextButtonHistoire);
     }
 
@@ -50,7 +52,9 @@ public class PopupManager : MonoBehaviour
 
     public void NextButtonHistoire()
     {
+
         _audioManager.PlayClickSound();
+
         panelHistoire.SetActive(false);
         panelControles.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
@@ -95,12 +99,14 @@ public class PopupManager : MonoBehaviour
         panelTempetesSolaires.SetActive(true);
     }
 
+
     public void GameOverMenu()
     {
         Time.timeScale = 0f;
         EventSystem.current.SetSelectedGameObject(_boutonMenu);
         _panelGameOver.SetActive(true);
     }
+
 
     public void CloseButtonSeisme()
     {
