@@ -28,6 +28,10 @@ public class PopupManager : MonoBehaviour
     [SerializeField] private GameObject closeButtonTempetesSolaires;
     [SerializeField] private GameObject _boutonMenu;
 
+    private bool _buttonClicked;
+
+    public bool ButtonClicked { get => _buttonClicked; set => _buttonClicked = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -111,6 +115,7 @@ public class PopupManager : MonoBehaviour
     public void CloseButtonSeisme()
     {
         _audioManager.PlayClickSound();
+        _buttonClicked = true;
         panelSeisme.SetActive(false);
         Time.timeScale = 1f;
         EventSystem.current.SetSelectedGameObject(null);
@@ -119,6 +124,7 @@ public class PopupManager : MonoBehaviour
     public void CloseButtonIntemperies()
     {
         _audioManager.PlayClickSound();
+        _buttonClicked = true;
         panelIntemperies.SetActive(false);
         Time.timeScale = 1f;
         EventSystem.current.SetSelectedGameObject(null);
@@ -127,6 +133,7 @@ public class PopupManager : MonoBehaviour
     public void CloseButtonTempetesSolaires()
     {
         _audioManager.PlayClickSound();
+        _buttonClicked = true;
         panelTempetesSolaires.SetActive(false);
         Time.timeScale = 1f;
         EventSystem.current.SetSelectedGameObject(null);

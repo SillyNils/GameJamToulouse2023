@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor.UIElements;
 using UnityEngine;
 
@@ -201,12 +202,48 @@ public class WaveManager : MonoBehaviour
     {
         _coroutineStarted = true;
         Debug.Log("debut waitBetweenWaves");
+        if (_waveIndex == 0)
+        {
+            _popupManager.SeismPanel();
+            Debug.LogError("debut waitBetweenWaves");
+            while (!_popupManager.ButtonClicked)
+            {
+                yield return 0;
+            }
+            _waveIndex = _waveIndex + 1;
+            _eventIndex = 0;
+            _waveComplete = false;
+        } else if (_waveIndex == 1)
+        {
+            _popupManager.CloudPanel();
+            Debug.LogError("debut waitBetweenWaves");
+            while (!_popupManager.ButtonClicked)
+            {
+                yield return 0;
+            }
+            _waveIndex = _waveIndex + 1;
+            _eventIndex = 0;
+            _waveComplete = false;
+        } else if (_waveIndex == 2)
+        {
+            _popupManager.SolarflarePanel();
+            Debug.LogError("debut waitBetweenWaves");
+            while (!_popupManager.ButtonClicked)
+            {
+                yield return 0;
+            }
+            _waveIndex = _waveIndex + 1;
+            _eventIndex = 0;
+            _waveComplete = false;
+        } else
+        {
         Debug.Log(_waveIndex);
         yield return new WaitForSeconds(5f);
         _waveIndex = _waveIndex + 1 ;
         _eventIndex = 0;
         _waveComplete = false;
         Debug.Log(_waveIndex);
+        }
         Debug.Log("fin waitBetweenWaves");
         _coroutineStarted = false;
     }
