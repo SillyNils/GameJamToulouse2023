@@ -81,21 +81,21 @@ public class WaveManager : MonoBehaviour
     void firstWave()
     {
         WaveEvent waveEvent = new();
-        waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 0.5f, 1f, 0, 120f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SeismicEvent, 2f, 2f, 0, 120f, 0));
         _waves.Add(waveEvent);
     }
 
     void secondWave()
     {
         WaveEvent waveEvent = new WaveEvent();
-        waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 10f, 4f, 2f, 0f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.MeteorologicEvent, 10f, 3f, 3f, 0f, 0));
         _waves.Add(waveEvent);
     }
 
     void thirdWave()
     {
         WaveEvent waveEvent = new WaveEvent();
-        waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 10f, 4f, 2f, 0f, 0));
+        waveEvent.events.Add(addCustomEvent(EventEnum.SolarFlareEvent, 10f, 0.5f, 5f, 0f, 0));
         _waves.Add(waveEvent); 
     }
 
