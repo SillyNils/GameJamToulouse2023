@@ -48,13 +48,14 @@ public class AudioManager : MonoBehaviour
         if ((qteAreaDectectionLeft.GameOver == true|| qteAreaDectectionRight.GameOver == true) && !_looserIsplaying)
         {
             //game over
-            StartCoroutine(LooserPlaying());
-
             _baseNeutre_audiosource.volume = 0;
             _seisme_audiosource.volume = 0;
             _tempete_audiosource.volume = 0;
             _intemperie_audiosource.volume = 0;
             _meteorite_audiosource.volume = 0;
+            StartCoroutine(LooserPlaying());
+
+            
         }
         else if (waveManager.LastEvent == null)
         {

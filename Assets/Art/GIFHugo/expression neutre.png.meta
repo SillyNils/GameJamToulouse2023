@@ -1,0 +1,739 @@
+fileFormatVersion: 2
+guid: be5a6d8a141210742b4e26cf93b139d3
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: expression neutre_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 810
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ace1a36e0a812248ab02f5f21eb6411
+      internalID: -966151015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_1
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 810
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a3e837fc1f9de64394e8a9ce0477816
+      internalID: -65150688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_2
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 810
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09926a37f0faf0e4c9d750a91608f4f5
+      internalID: 1927300194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_3
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 810
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cb00e7425e066045bae64b4fabfc1ff
+      internalID: 1408911664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_4
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 810
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc43d260a1290cd42a8e02c64eba02c4
+      internalID: 1249199411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_5
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 810
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3537ffa78c6596a4aa29f0f0fa0f270d
+      internalID: -1964670550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_6
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 810
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f931407553782e49804116ae411c0eb
+      internalID: 2037226656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 540
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b64dde89d5e43a49bb1fa218a9dc50f
+      internalID: -1773544927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_8
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 540
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cce8bda64bf569f4185c933ec178ad84
+      internalID: 966190377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_9
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 540
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4acd7226f3d652148b33bcc7bc2e4957
+      internalID: 699055904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_10
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 540
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e8ccacf8af75614698d83c2f7ff886e
+      internalID: 2122207506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_11
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 540
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 010a7b68b1a6f2b4e99bb81cbf78558e
+      internalID: 2050470246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_12
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 540
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e42eed02ebf87474a9b7ffa3232125cf
+      internalID: -1671465288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_13
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 540
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adb2ba32944e67a48a7ad8008e0540e4
+      internalID: 1797275683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 270
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a80e32996b13224ca0d2220044805e5
+      internalID: -477734092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_15
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 270
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b9b24382e092e04a99d45e1e0d08320
+      internalID: -2125508157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_16
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 270
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9012f489c5e70744abea808a84560711
+      internalID: -494291413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_17
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 270
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66e939931fc23944189d027f9550fbd2
+      internalID: 26751603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_18
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 270
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f523b430fe974fc43953d53d0274a348
+      internalID: -117109453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_19
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 270
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2946af378a4cd848855cb04aaa56f39
+      internalID: 664851014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_20
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 270
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c51b29de5188c4747aacdd2b95abbde4
+      internalID: 439980803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4a4bd99a595ace42bfec4bf058642d7
+      internalID: 1029548572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_22
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 0
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0243275c1e1f084b86216a6d0a24cbc
+      internalID: -1922441601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_23
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 0
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecbd9d85e2df28246a123894192a5fde
+      internalID: -207237929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_24
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 0
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed511dedf6119bc45a1ff94384a48ec8
+      internalID: -1589153224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_25
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 0
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a0cb56142cccf144bda1eace682b748
+      internalID: -1497794213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_26
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 0
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94af13e06ec47de42aabc089af1f4e24
+      internalID: -705001749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expression neutre_27
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 0
+        width: 274.2857
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84713467475aff140a90559ae8304927
+      internalID: -799742574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      expression neutre_0: -966151015
+      expression neutre_1: -65150688
+      expression neutre_10: 2122207506
+      expression neutre_11: 2050470246
+      expression neutre_12: -1671465288
+      expression neutre_13: 1797275683
+      expression neutre_14: -477734092
+      expression neutre_15: -2125508157
+      expression neutre_16: -494291413
+      expression neutre_17: 26751603
+      expression neutre_18: -117109453
+      expression neutre_19: 664851014
+      expression neutre_2: 1927300194
+      expression neutre_20: 439980803
+      expression neutre_21: 1029548572
+      expression neutre_22: -1922441601
+      expression neutre_23: -207237929
+      expression neutre_24: -1589153224
+      expression neutre_25: -1497794213
+      expression neutre_26: -705001749
+      expression neutre_27: -799742574
+      expression neutre_3: 1408911664
+      expression neutre_4: 1249199411
+      expression neutre_5: -1964670550
+      expression neutre_6: 2037226656
+      expression neutre_7: -1773544927
+      expression neutre_8: 966190377
+      expression neutre_9: 699055904
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
